@@ -1,8 +1,8 @@
 import Stream from "./components/Stream";
 import Upload from "./components/Upload";
-import ListCourses from "./pages/ListCourses/ListCourses";
+import MainPage from "./pages/mainPage/MainPage";
 
-import { UPLOAD_ROUTE, STREAM_ROUTE, COURSE_LIST } from "./utils/pathConsts";
+import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE } from "./utils/pathConsts";
 
 
 // export const authRoutes = [
@@ -23,8 +23,8 @@ export const publicRoutes = [
         Element: <Stream/>
     },
     {
-        path: COURSE_LIST,
-        Element: <ListCourses/>
+        path: MAIN_PAGE,
+        Element: <MainPage/>
     },
 
 ]

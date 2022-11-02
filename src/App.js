@@ -5,22 +5,29 @@ import AppRouter from "./components/AppRouter";
 import { observer } from 'mobx-react-lite'
 import { useContext, useEffect, useState } from "react";
 import { Context } from ".";
-// import { check } from "./http/userAPI";
+import { check } from "./http/userAPI";
 import { Spinner } from "react-bootstrap";
-import Navbar from "./components/Navbar";
+
 
 
 
 const App = observer(() => {
-  // const { user } = useContext(Context) 
+  const { user } = useContext(Context) 
   const [loading, setLoading] = useState(false)
-  // useEffect(async () => {
-  //   check().then(data => {
-  //     user.setUser(data)
-  //     user.setIsAuth(true) 
-  //   }).finally(() => setLoading(false))
-
-  // }, []) 
+  // useEffect(() => {
+  //   (async function () {
+  //     await getAllCourse().then((data) => setCourses(data));
+  //   })();
+  // }, []);
+  useEffect(()=>{
+    (async () => {
+      check().then(data => {
+        user.setUser(data)
+        user.setIsAuth(true) 
+      }).finally(() => setLoading(false))
+  
+    })();
+  }, []) 
 
   if(loading){
   return (
@@ -30,7 +37,7 @@ const App = observer(() => {
   }
   return (
     <BrowserRouter>
-      <Navbar/>
+      {/* <Navbar/> */}
       <AppRouter />
     </BrowserRouter>
   );

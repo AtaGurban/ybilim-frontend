@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getAllCourse } from "./../../http/courseApi";
+import { getAllCourse } from "../../http/courseApi";
 import fav from "../../fav.png";
-import search from "../../search.png";
 import "./listCourses.css";
 import { Link } from "react-router-dom";
 
@@ -22,14 +21,14 @@ const ListCourses = () => {
     })();
   }, []);
   return (
-    <div>
+    <div className="list-course">
       <div className="container">
-        <div className="search">
+        {/* <div className="search">
           <input type="text" id="search" placeholder="Gözleg..." />
           <button className="btn-sham">
             <img src={search} alt="" />
           </button>
-        </div>
+        </div> */}
         <div className="boxes">
           {visibleCourses.map((i) => (
             <Link key={i.id} to={`/stream/${i.id}`}>
