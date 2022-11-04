@@ -1,8 +1,9 @@
 import Stream from "./components/Stream";
 import Upload from "./components/Upload";
+import Auth from "./pages/auth/Auth";
 import MainPage from "./pages/mainPage/MainPage";
 
-import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE } from "./utils/pathConsts";
+import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE } from "./utils/pathConsts";
 
 
 // export const authRoutes = [
@@ -25,6 +26,10 @@ export const publicRoutes = [
     {
         path: MAIN_PAGE,
         Element: <MainPage/>
+    },
+    {
+        path: AUTH_PAGE,
+        Element: <Auth/>
     },
 
 ]

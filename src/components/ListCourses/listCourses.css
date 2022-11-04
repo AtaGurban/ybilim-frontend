@@ -79,10 +79,7 @@ nav {
 .logo img {
     height: 40px;
 }
-.container {
-    width: 95%;
-    margin: 0px auto;
-}
+
 .boxes {
     display: flex;flex-wrap: wrap;justify-content: center;
     margin: 20px 0px 0px 0px;

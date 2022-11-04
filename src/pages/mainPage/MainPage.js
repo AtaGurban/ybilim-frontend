@@ -15,8 +15,8 @@ import ListCourses from "../../components/ListCourses/ListCourses";
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
 import { registration } from "../../http/userAPI";
-import { useNavigate } from "react-router-dom";
-import { MAIN_PAGE } from "../../utils/pathConsts";
+import { Link, useNavigate } from "react-router-dom";
+import { ADMIN_ROUTE, AUTH_PAGE, MAIN_PAGE, MY_COURSES } from "../../utils/pathConsts";
 
 const MainPage = observer(() => {
   const [email, setEmail] = useState("");
@@ -24,12 +24,12 @@ const MainPage = observer(() => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const { user } = useContext(Context);
-  let navigate = useNavigate()
+  let navigate = useNavigate();
+  console.log(user.user.role);
 
   const signUp = async () => {
     try {
       if (email && phone && name && password) {
-        console.log('dsdsd');
         const data = await registration(email, name, password, phone);
         user.setUser(data);
         user.setIsAuth(true);
@@ -39,6 +39,7 @@ const MainPage = observer(() => {
       console.log(error.response.data.message);
     }
   };
+
   return (
     <div className="h-100">
       <div className={`${styles.menu}`}>
@@ -46,9 +47,16 @@ const MainPage = observer(() => {
           <div className={`${styles["center_menu"]}`}>
             <img src={logo} style={{ height: "40px" }} />
           </div>
-          <div className={`${styles["right_menu"]}`}>
-            <a href="#ids">Başla</a>
-          </div>
+          {user.isAuth ? (
+            <div className={`${styles["btn-main-page"]}  text-end d-flex`}>
+              <button className="btn me-2 btn-warning"><Link to={MY_COURSES}>Kurslarym</Link></button>  
+              {(user.user.role == 'USER') ?<button className="btn btn-primary  me-2"><Link to={ADMIN_ROUTE}>Admin panel</Link></button>  : null}
+            </div>
+          ) : (
+            <div className={`${styles["right_menu"]} text-center`}>
+              <Link to={AUTH_PAGE}>Başla</Link>{" "}
+            </div>
+          )}
         </div>
       </div>
       <header
@@ -247,60 +255,64 @@ const MainPage = observer(() => {
           allowFullScreen
         ></iframe>
       </div> */}
-      <div
-        id="auth-block"
-        className="container auth-block d-block text-center mb-5"
-      >
-        <div className="form-name my-2">
-          <label className="text-bold" htmlFor="name">
-            Adyňyzy ýazyň
-          </label>
-          <input
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Adyňyzy ýazyň"
-            name="name"
-            id="name"
-          />
+      {!user.isAuth ? (
+        <div
+          id="auth-block"
+          className="container auth-block d-block text-center mb-5"
+        >
+          <div className="form-name my-2">
+            <label className="text-bold" htmlFor="name">
+              Adyňyzy ýazyň
+            </label>
+            <input
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+              placeholder="Adyňyzy ýazyň"
+              name="name"
+              id="name"
+            />
+          </div>
+          <div className="form-email my-2">
+            <label className="text-bold" htmlFor="email">
+              E-poçta ýazyň
+            </label>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Email ýazyň"
+              name="email"
+              id="email"
+            />
+          </div>
+          <div className="form-phone my-2">
+            <label className="text-bold" htmlFor="phone">
+              Telefonyňyzy ýazyň
+            </label>
+            <input
+              onChange={(e) => setPhone(e.target.value)}
+              type="text"
+              placeholder="Telefonyňyzy ýazyň"
+              name="phone"
+              id="phone"
+            />
+          </div>
+          <div className="form-password my-2">
+            <label className="text-bold" htmlFor="password">
+              Açarsöz ýazyň
+            </label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="text"
+              placeholder="Açarsöz ýazyň"
+              name="password"
+              id="password"
+            />
+          </div>
+          <button onClick={() => signUp()} className="btn btn-danger mt-3">
+            Başlamak isleýän
+          </button>
         </div>
-        <div className="form-email my-2">
-          <label className="text-bold" htmlFor="email">
-            E-poçta ýazyň
-          </label>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            type="text"
-            placeholder="Email ýazyň"
-            name="email"
-            id="email"
-          />
-        </div>
-        <div className="form-phone my-2">
-          <label className="text-bold" htmlFor="phone">
-            Telefonyňyzy ýazyň
-          </label>
-          <input
-            onChange={(e) => setPhone(e.target.value)}
-            type="text"
-            placeholder="Telefonyňyzy ýazyň"
-            name="phone"
-            id="phone"
-          />
-        </div>
-        <div className="form-password my-2">
-          <label className="text-bold" htmlFor="password">
-            Açarsöz ýazyň
-          </label>
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            type="text"
-            placeholder="Açarsöz ýazyň"
-            name="password"
-            id="password"
-          />
-        </div>
-        <button onClick={()=>signUp()} className="btn btn-danger mt-3">Başlamak isleýän</button>
-      </div>
+      ) : null}
     </div>
   );
 });

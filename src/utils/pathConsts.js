@@ -1,3 +1,6 @@
-export const UPLOAD_ROUTE = '/upload'
+export const ADMIN_ROUTE = '/admin'
+export const UPLOAD_ROUTE = '/admin/course/upload'
 export const STREAM_ROUTE = '/stream/:id'
 export const MAIN_PAGE = '/'
+export const AUTH_PAGE = '/login'
+export const MY_COURSES = '/my-course'

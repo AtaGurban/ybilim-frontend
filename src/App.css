@@ -124,9 +124,8 @@ textarea:focus {
   overflow: hidden;
   position: relative;
 }
-.container {
-  width: 90%;
-  margin: 0px auto;
+a{
+  text-decoration: none;
 }
 .container_video {
   display: flex;flex-direction: column;align-items: center;

@@ -7,6 +7,9 @@ html {
   height: 100%;
   line-height: 1.2;
 }
+.btn-main-page{
+  color: #000;
+}
 
 /* Full height image header */
  .bgimg-1 {
