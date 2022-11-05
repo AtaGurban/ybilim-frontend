@@ -20,3 +20,8 @@ export const check = async ()=>{
     localStorage.setItem('token', data.token)
     return jwt_decode(data.token)
 }
+
+export const getAllUsers = async (page)=>{
+    const {data} = await $authhost.get(`api/admin/get-users?page=${page}`)
+    return data
+}

@@ -7,31 +7,31 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from ".";
 import { check } from "./http/userAPI";
 import { Spinner } from "react-bootstrap";
-
-
-
+import {useNavigate} from 'react-router-dom'
 
 const App = observer(() => {
   const { user } = useContext(Context) 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  // const navigate = useNavigate()
   // useEffect(() => {
   //   (async function () {
   //     await getAllCourse().then((data) => setCourses(data));
   //   })();
   // }, []);
   useEffect(()=>{
-    (async () => {
-      check().then(data => {
-        user.setUser(data)
-        user.setIsAuth(true) 
+     (async function(){
+      await check().then(async data => {
+        await user.setUser(data)
+        await user.setIsAuth(true) 
       }).finally(() => setLoading(false))
-  
+
     })();
   }, []) 
 
+  
   if(loading){
-  return (
-    <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
+    return (
+      <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
       <Spinner animation={'grow'}/>
     </div>)
   }

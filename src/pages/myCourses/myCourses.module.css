@@ -1,0 +1,18 @@
+.my-courses-title{
+    margin: 0;
+    text-align: start;
+    text-transform: uppercase;
+}
+
+.my-courses-title h2{
+ font-family: 'Poppins';
+ margin: 0;
+ margin-left: 40px;
+ /* text-align: start; */
+}
+
+hr{
+    height: 1px;
+    background-color: rgba(0, 0, 0, .6);
+    margin: 10px 0;
+}

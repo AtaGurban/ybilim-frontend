@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { createCourse } from '../http/courseApi';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useParams } from 'react-router-dom';
+import { createVideo } from '../http/courseApi';
 
 function ModalAddVideo({show, onHide}) {
-//   const [show, setShow] = useState(true);
 const [name, setName] = useState('')
+const [number, setNumber] = useState('')
+const [description, setDescription] = useState('')
 const [loaderPercent, setLoaderPercent] = useState(0)
 const [loaderClass, setLoaderClass] = useState('progress d-none')
 const [img, setImg] = useState(null);
 const [video, setVideo] = useState(null);
-const [description, setDescription] = useState('');
-//   const handleClose = () => setShow(false);
-//   const handleShow = () => setShow(true);
+const params = useParams()
 
 const selectFileImg = (e) => {
     setImg(e.target.files[0])
@@ -32,8 +32,9 @@ const selectFileVideo = (e) => {
 
 const addCourse = async()=>{
     const formData = new FormData()
-
     formData.append('name', name)
+    formData.append('courseId', params.id)
+    formData.append('number', number)
     formData.append('description', description)
     formData.append('img', img)
     formData.append('video', video)
@@ -46,7 +47,9 @@ const addCourse = async()=>{
         }
     }
 
-    await createCourse(formData, options)
+    await createVideo(formData, options).then((data) => {
+      console.log(data);
+    });
 }
   return (
     <>
@@ -56,12 +59,13 @@ const addCourse = async()=>{
 
       <Modal show={show} onHide={onHide}>
         <Modal.Header closeButton>
-          <Modal.Title>Kurs goşmak üçin penjire</Modal.Title>
+          <Modal.Title>Video goşmak üçin penjire</Modal.Title>
         </Modal.Header>
         <Modal.Body>
                 <img  src="img/video.gif" alt="" width="150px"/>
                 <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Video Name..." name="name"/>
-                <textarea onChange={(e) => setDescription(e.target.value)} name="description" id="" cols="30"  rows="10" placeholder="Type Description..."></textarea>
+                <input onChange={(e) => setNumber(e.target.value)} type="number" placeholder="Video number..." name="name"/>
+                <textarea onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Beyan..." name="name"/>
                 <div className="inputs"> 
                 <label htmlFor="poster"><img src="img/image.png" alt="" width="30px"/>Surat Saýla</label>
                 <input type="file" onChange={selectFileImg} name="poster" placeholder="Select Image" id="poster"/>
@@ -73,7 +77,7 @@ const addCourse = async()=>{
                         <div className="progress-bar" role="progressbar" style={{width:`${loaderPercent}%`}} aria-valuenow={loaderPercent} aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
-                <button className='' onClick={addCourse} >Submit</button>
+                <button className='btn btn-danger' onClick={addCourse} >gosh</button>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={onHide}>

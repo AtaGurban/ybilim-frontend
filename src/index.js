@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'shaka-player/dist/controls.css';
+// import 'shaka-player/dist/controls.css';
 import {UserStore} from './store/UserStore';  
 import App from './App';
 

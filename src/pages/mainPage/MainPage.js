@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./MainPage.module.css";
 import logo from "./logo (2).png";
 import one from "./1.png";
@@ -25,7 +25,13 @@ const MainPage = observer(() => {
   const [password, setPassword] = useState("");
   const { user } = useContext(Context);
   let navigate = useNavigate();
-  console.log(user.user.role);
+
+//   useEffect(() => {
+//     navigate(JSON.parse(window.sessionStorage.getItem('lastRoute') || '{}'))
+//     window.onbeforeunload = () => {
+//         window.sessionStorage.setItem('lastRoute', JSON.stringify(window.location.pathname))
+//     }
+// }, [])
 
   const signUp = async () => {
     try {
@@ -48,9 +54,9 @@ const MainPage = observer(() => {
             <img src={logo} style={{ height: "40px" }} />
           </div>
           {user.isAuth ? (
-            <div className={`${styles["btn-main-page"]}  text-end d-flex`}>
-              <button className="btn me-2 btn-warning"><Link to={MY_COURSES}>Kurslarym</Link></button>  
-              {(user.user.role == 'USER') ?<button className="btn btn-primary  me-2"><Link to={ADMIN_ROUTE}>Admin panel</Link></button>  : null}
+            <div className={`${styles["btn-main-page"]} container text-end d-flex`}>
+              <button className="btn-my-courses me-2 text-start "><Link to={MY_COURSES}>KURSLARYM</Link></button>  
+              {(user.user.role !== 'USER') ?<button className="btn-my-courses me-2 text-start"><Link to={ADMIN_ROUTE}>Admin panel</Link></button>  : null}
             </div>
           ) : (
             <div className={`${styles["right_menu"]} text-center`}>

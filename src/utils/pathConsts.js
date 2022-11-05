@@ -1,4 +1,7 @@
 export const ADMIN_ROUTE = '/admin'
+export const ADMIN_ROUTE_USERS = '/admin/users'
+export const ADMIN_COURSE_WIDEO_ROUTE = '/admin/course/:id'
+export const ADMIN_COURSE_ROUTE = '/admin/course'
 export const UPLOAD_ROUTE = '/admin/course/upload'
 export const STREAM_ROUTE = '/stream/:id'
 export const MAIN_PAGE = '/'

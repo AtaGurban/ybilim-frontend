@@ -8,7 +8,6 @@ const ListCourses = () => {
   const [courses, setCourses] = useState([]);
   const [visibleCourses, setVisibleCourses] = useState([]);
   const [search, setSearch] = useState("");
-  console.log(visibleCourses);
   useEffect(() => {
     if (search === "") {
       setVisibleCourses(courses);
@@ -31,7 +30,7 @@ const ListCourses = () => {
         </div> */}
         <div className="boxes">
           {visibleCourses.map((i) => (
-            <Link key={i.id} to={`/stream/${i.id}`}>
+            <Link key={i.id} >
               <div className="box">
                 <div className="box_image skeleton">
                   <img src={`http://localhost:5000/api/static/${i.img}`} alt={`${i.img}`} />
