@@ -8,7 +8,7 @@ import Auth from "./pages/auth/Auth";
 import MainPage from "./pages/mainPage/MainPage";
 import MyCourses from "./pages/myCourses/MyCourses";
 
-import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS } from "./utils/pathConsts";
+import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE } from "./utils/pathConsts";
 
 
 // export const authRoutes = [
@@ -30,8 +30,12 @@ export const authRoutes = [
     },
     {
         path: MY_COURSES,
-        Element: <myCourses/>
-    }
+        Element: <MyCourses/>
+    },
+    {
+        path: COURSE_ROUTE,
+        Element: <MyCourses/>
+    },
 
 ]
 export const publicRoutes = [
@@ -78,6 +82,10 @@ export const adminRoutes = [
     {
         path: ADMIN_ROUTE_USERS,
         Element: <AdminUsers/>
+    },
+    {
+        path: COURSE_ROUTE,
+        Element: <MyCourses/>
     },
 
 ]

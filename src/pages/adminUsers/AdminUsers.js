@@ -4,20 +4,21 @@ import Navbar from "../../components/Navbar";
 import { ADMIN_COURSE_ROUTE, ADMIN_ROUTE_USERS } from "../../utils/pathConsts";
 import styles from "./admincourse.module.css";
 import { removeCourse } from "../../http/courseApi";
-import ModalAddCourse from "../../components/ModalAddCourse";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
 import Pagination from 'react-bootstrap/Pagination';
 import { getAllUsers } from "../../http/userAPI";
+import ModalBuyCourse from "../../components/ModalBuyCourse";
 
 const AdminUsers = observer(() => {
     const [users, setUsers] = useState([])
     const [active, setActive] = useState(1)
+    const [userId, setUserId] = useState(null)
+    const [userName, setUserName] = useState('')
     const [paginationCount, setPaginationCount] = useState(1)
     const { user } = useContext(Context) 
-    const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
-    const navigate = useNavigate()
+    const [modalBuyCourseVisible, setModalBuyCourseVisible] = useState(false)
 
     const removeCourseFunc = async(id)=>{
         if (user.user.role === 'SUPERADMIN'){
@@ -26,14 +27,18 @@ const AdminUsers = observer(() => {
     }
     useEffect(()=>{
         (async function(){
-            await getAllUsers(paginationCount).then((data) => {setUsers(data.rows); setPaginationCount(data.count)});
+            await getAllUsers(active).then((data) => {setUsers(data.rows); setPaginationCount(data.count)});
         })()
-    }, [paginationCount] )
+    }, [active] )
 
-
+    const buyCourse = (id, name)=>{
+      setUserId(id)
+      setUserName(name)
+      setModalBuyCourseVisible(true)
+    }
 
     let items = [];
-    for (let number = 1; number <= Math.ceil(paginationCount / 2); number++) {
+    for (let number = 1; number <= Math.ceil(paginationCount / 10); number++) {
     items.push(
         <Pagination.Item onClick={()=>setActive(number)} key={number} active={number === active}>
         {number}
@@ -55,7 +60,7 @@ const AdminUsers = observer(() => {
     <div>
       <Navbar />
       <div className="container mt-3">
-        <ModalAddCourse show={modalAddCourseVisible} onHide={() => setModalAddCourseVisible(false)} />
+        <ModalBuyCourse userId = {userId} userName={userName} show={modalBuyCourseVisible} onHide={() => setModalBuyCourseVisible(false)} />
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
@@ -99,7 +104,7 @@ const AdminUsers = observer(() => {
                       <td className="p-1">{i.createdAt}</td>
                       <td className="p-1 text-center d-flex">
                         <button
-                          onClick={() => navigate(`/admin/course/${i.id}`)}
+                          onClick={() => buyCourse(i.id, i.first_name)}
                           className="btn btn-success mx-2"
                         >
                           Kurs bermek
@@ -111,7 +116,7 @@ const AdminUsers = observer(() => {
                           Üýtgetmek
                         </button>
                         <button
-                          onClick={() => removeCourseFunc(i.id)}
+                          // onClick={() => removeCourseFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className="btn btn-danger"
                         >

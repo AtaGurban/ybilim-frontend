@@ -25,3 +25,8 @@ export const getAllUsers = async (page)=>{
     const {data} = await $authhost.get(`api/admin/get-users?page=${page}`)
     return data
 }
+
+export const buyCourse = async (item)=>{
+    const {data} = await $authhost.post(`api/admin/buy-course`, item)
+    return data
+}

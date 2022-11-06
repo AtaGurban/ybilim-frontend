@@ -11,21 +11,22 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
 
 const AdminCourse = observer(() => {
-    const [courses, setCourses] = useState([])
-    const { user } = useContext(Context) 
-    const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
-    const navigate = useNavigate()
+  const [courses, setCourses] = useState([])
+  const { user } = useContext(Context) 
+  const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
+  const navigate = useNavigate()
 
-    const removeCourseFunc = async(id)=>{
-        if (user.user.role === 'SUPERADMIN'){
-          await removeCourse(id).then((data)=> window.location.reload())
-        }
-    }
-    useEffect(()=>{
-        (async function(){
-            await getAllCourse().then((data) => setCourses(data));
-        })()
-    }, [] )
+  const removeCourseFunc = async(id)=>{
+      if (user.user.role === 'SUPERADMIN'){
+        await removeCourse(id).then((data)=> window.location.reload())
+      }
+  }
+  useEffect(()=>{
+      (async function(){
+          await getAllCourse().then((data) => setCourses(data));
+      })()
+  }, [] )
+  
 
   const tableAttributes = [
     "id",
