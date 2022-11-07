@@ -21,8 +21,17 @@ export const check = async ()=>{
     return jwt_decode(data.token)
 }
 
+export const update = async (item)=>{
+    const {data} = await $authhost.put('api/user/update', item)
+    return data
+}
+
 export const getAllUsers = async (page)=>{
     const {data} = await $authhost.get(`api/admin/get-users?page=${page}`)
+    return data
+}
+export const getOneUsers = async (id)=>{
+    const {data} = await $authhost.get(`api/user/get-user?id=${id}`)
     return data
 }
 

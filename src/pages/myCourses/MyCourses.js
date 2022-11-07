@@ -14,7 +14,7 @@ const MyCourses = () => {
         })()
     }, [] )
     return (
-        <div className='container'>
+        <div >
             <Navbar/>
             <div className={`${styles['my-courses-title']} c-bold`}><h2>Meniň kurslarym</h2></div>
             <hr/>

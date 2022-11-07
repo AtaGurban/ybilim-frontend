@@ -10,6 +10,7 @@ import { Context } from "../..";
 import Pagination from 'react-bootstrap/Pagination';
 import { getAllUsers } from "../../http/userAPI";
 import ModalBuyCourse from "../../components/ModalBuyCourse";
+import ModalEditUser from "../../components/ModalEditUser";
 
 const AdminUsers = observer(() => {
     const [users, setUsers] = useState([])
@@ -19,6 +20,7 @@ const AdminUsers = observer(() => {
     const [paginationCount, setPaginationCount] = useState(1)
     const { user } = useContext(Context) 
     const [modalBuyCourseVisible, setModalBuyCourseVisible] = useState(false)
+    const [modalEditUserVisible, setModalEditUserVisible] = useState(false)
 
     const removeCourseFunc = async(id)=>{
         if (user.user.role === 'SUPERADMIN'){
@@ -30,6 +32,12 @@ const AdminUsers = observer(() => {
             await getAllUsers(active).then((data) => {setUsers(data.rows); setPaginationCount(data.count)});
         })()
     }, [active] )
+
+    const setUser = (id, name)=>{
+      setUserId(id)
+      setUserName(name)
+      setModalEditUserVisible(true)
+    }
 
     const buyCourse = (id, name)=>{
       setUserId(id)
@@ -61,6 +69,7 @@ const AdminUsers = observer(() => {
       <Navbar />
       <div className="container mt-3">
         <ModalBuyCourse userId = {userId} userName={userName} show={modalBuyCourseVisible} onHide={() => setModalBuyCourseVisible(false)} />
+        <ModalEditUser userId = {userId} userName={userName} show={modalEditUserVisible} onHide={() => setModalEditUserVisible(false)}/>
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
@@ -100,18 +109,18 @@ const AdminUsers = observer(() => {
                       <td className="p-1">{i.phone}</td>
                       <td className="p-1">{i.email}</td>
                       <td className="p-1">{`${i.thisTeacher}`}</td>
-                      <td className="p-1">{i.description}</td>
+                      <td className="p-1 w-50">{i.description}</td>
                       <td className="p-1">{i.createdAt}</td>
-                      <td className="p-1 text-center d-flex">
+                      <td className="p-1 text-center">
                         <button
                           onClick={() => buyCourse(i.id, i.first_name)}
-                          className="btn btn-success mx-2"
+                          className="btn btn-success mx-2 my-2"
                         >
                           Kurs bermek
                         </button>
                         <button
-                        //   onClick={() => removeCourseFunc(i.id)}
-                          className="btn btn-primary mx-2"
+                          onClick={() => setUser(i.id, i.first_name)}
+                          className="btn btn-primary mx-2 my-2"
                         >
                           Üýtgetmek
                         </button>

@@ -31,6 +31,11 @@ export const getOneCourse = async (id)=>{
     return data
 }
 
+export const getOneCourseAndVideo = async (id)=>{
+    const {data} = await $host.get(`api/video/list?videoId=${id}`)
+    return data
+}
+
 export const removeCourse = async (id)=>{
     const {data} = await $authhost.delete(`api/admin/remove-course?id=${id}`)
     return data

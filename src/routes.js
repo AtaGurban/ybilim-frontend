@@ -5,6 +5,7 @@ import AdminCourse from "./pages/adminCourse/AdminCourse";
 import AdminCourseWideo from "./pages/adminCourseWideo/adminCourseWideo";
 import AdminUsers from "./pages/adminUsers/AdminUsers";
 import Auth from "./pages/auth/Auth";
+import CoursePage from "./pages/coursePage/CoursePage";
 import MainPage from "./pages/mainPage/MainPage";
 import MyCourses from "./pages/myCourses/MyCourses";
 
@@ -34,7 +35,7 @@ export const authRoutes = [
     },
     {
         path: COURSE_ROUTE,
-        Element: <MyCourses/>
+        Element: <CoursePage/>
     },
 
 ]
@@ -85,7 +86,7 @@ export const adminRoutes = [
     },
     {
         path: COURSE_ROUTE,
-        Element: <MyCourses/>
+        Element: <CoursePage/>
     },
 
 ]
