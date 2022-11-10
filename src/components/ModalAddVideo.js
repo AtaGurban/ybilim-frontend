@@ -7,7 +7,7 @@ import { createVideo } from '../http/courseApi';
 function ModalAddVideo({show, onHide}) {
 const [name, setName] = useState('')
 const [number, setNumber] = useState('')
-const [description, setDescription] = useState('')
+// const [description, setDescription] = useState('')
 const [loaderPercent, setLoaderPercent] = useState(0)
 const [loaderClass, setLoaderClass] = useState('progress d-none')
 const [img, setImg] = useState(null);
@@ -35,7 +35,7 @@ const addCourse = async()=>{
     formData.append('name', name)
     formData.append('courseId', params.id)
     formData.append('number', number)
-    formData.append('description', description)
+    // formData.append('description', description)
     formData.append('img', img)
     formData.append('video', video)
     const options = {
@@ -65,7 +65,7 @@ const addCourse = async()=>{
                 <img  src="img/video.gif" alt="" width="150px"/>
                 <input onChange={(e) => setName(e.target.value)} type="text" placeholder="Video Name..." name="name"/>
                 <input onChange={(e) => setNumber(e.target.value)} type="number" placeholder="Video number..." name="name"/>
-                <textarea onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Beyan..." name="name"/>
+                {/* <textarea onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Beyan..." name="name"/> */}
                 <div className="inputs"> 
                 <label htmlFor="poster"><img src="img/image.png" alt="" width="30px"/>Surat Saýla</label>
                 <input type="file" onChange={selectFileImg} name="poster" placeholder="Select Image" id="poster"/>

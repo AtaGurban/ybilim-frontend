@@ -35,6 +35,11 @@ export const getOneUsers = async (id)=>{
     return data
 }
 
+export const removeUser = async (id)=>{
+    const {data} = await $authhost.delete(`api/user/remove?id=${id}`)
+    return data
+}
+
 export const buyCourse = async (item)=>{
     const {data} = await $authhost.post(`api/admin/buy-course`, item)
     return data

@@ -39,7 +39,7 @@ const MainPage = observer(() => {
         const data = await registration(email, name, password, phone);
         user.setUser(data);
         user.setIsAuth(true);
-        navigate(MAIN_PAGE);
+        window.location.reload()
       }
     } catch (error) {
       console.log(error.response.data.message);

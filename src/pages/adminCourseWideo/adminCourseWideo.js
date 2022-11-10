@@ -5,16 +5,15 @@ import { ADMIN_COURSE_ROUTE } from "../../utils/pathConsts";
 import styles from "./admincourse.module.css";
 import { getAllVideosByCourseId, removeVideo } from "../../http/courseApi"; 
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
 import ModalAddVideo from "../../components/ModalAddVideo";
 import { Context } from "../..";
 
 const AdminCourseWideo = observer(() => {
     const [wideos, setWideos] = useState([])
     const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
-    const navigate = useNavigate()
     const { user } = useContext(Context) 
     const params = useParams()
+    const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
 
     const removeVideoFunc = async(id)=>{
       if (user.user.role === 'SUPERADMIN'){
@@ -25,6 +24,9 @@ const AdminCourseWideo = observer(() => {
         (async function(){
             await getAllVideosByCourseId(params.id).then((data) => setWideos(data));
         })()
+        if (user.user.role !== 'SUPERADMIN'){
+          setRemoveBtn('d-none')
+        }
     }, [] )
 
   const tableAttributes = [
@@ -38,7 +40,7 @@ const AdminCourseWideo = observer(() => {
   return (
     <div>
       <Navbar />
-      <div className="container mt-3">
+      <div className="mx-5 mt-3">
         <div className="add-new my-3 text-end">
             <button onClick={() => setModalAddCourseVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
@@ -52,10 +54,10 @@ const AdminCourseWideo = observer(() => {
                 className="d-block btn btn-outline-primary mb-3"
                 data-type="type"
               >
-                <Link to={"admin/users"}>Diňleýjiler</Link>
+                <Link to={"/admin/users"}>Diňleýjiler</Link>
               </li>
               <li
-                className="d-block btn btn-outline-primary mb-3"
+                className="d-block btn btn-primary mb-3 btn-active"
                 data-type="title-type"
               >
                 <Link to={ADMIN_COURSE_ROUTE}>Kurslar</Link>
@@ -92,7 +94,7 @@ const AdminCourseWideo = observer(() => {
                         <button
                           onClick={() => removeVideoFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
-                          className="btn btn-danger"
+                          className={removeBtn}
                         >
                           Pozmak
                         </button>

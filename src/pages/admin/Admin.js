@@ -10,7 +10,7 @@ const Admin = observer(() => {
     return (
         <div>
             <Navbar/>
-            <div className='container mt-3'>
+            <div className='mx-5 mt-3'>
                 <div className="row">
                     <div className={`${styles['admin-nav']} flex-column d-flex col-2 p-2`}>
                         <ul>

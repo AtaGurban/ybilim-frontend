@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { getAllCourse } from "../../http/courseApi";
+import { getFavouriteCourse } from "../../http/courseApi";
 import fav from "../../fav.png";
 import "./listCourses.css";
 import { Link } from "react-router-dom";
 
+
 const ListCourses = () => {
   const [courses, setCourses] = useState([]);
-  const [visibleCourses, setVisibleCourses] = useState([]);
-  const [search, setSearch] = useState("");
-  useEffect(() => {
-    if (search === "") {
-      setVisibleCourses(courses);
-    }
-  }, [search, courses]);
+  // const [visibleCourses, setVisibleCourses] = useState([]);
+  // const [search, setSearch] = useState("");
+  // useEffect(() => {
+  //   if (search === "") {
+  //     setVisibleCourses(courses);
+  //   }
+  // }, [search, courses]);
 
   useEffect(() => {
     (async function () {
-      await getAllCourse().then((data) => setCourses(data));
+      await getFavouriteCourse().then((data) => setCourses(data));
     })();
   }, []);
   return (
@@ -29,14 +30,14 @@ const ListCourses = () => {
           </button>
         </div> */}
         <div className="boxes">
-          {visibleCourses.map((i) => (
-            <Link key={i.id} >
-              <div className="box">
+          {courses.map((i) => (
+            <div className="col-sm-6 col-md-4 col-12" key={i.id} >
+              <div key={i.id} className="box ">
                 <div className="box_image skeleton">
                   <img src={`http://localhost:5000/api/static/${i.img}`} alt={`${i.img}`} />
                 </div>
                 <div className="box_content">
-                  <div className="box_avatar skeleton">
+                  {/* <div className="box_avatar skeleton">
                     <img
                       src={fav}
                       alt=""
@@ -44,7 +45,7 @@ const ListCourses = () => {
                       height="35px"
                       className="skeleton"
                     />
-                  </div>
+                  </div> */}
                   <div className="box_text">
                     <h2 className="skeleton box_h2">
                       {i.name}
@@ -54,7 +55,7 @@ const ListCourses = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

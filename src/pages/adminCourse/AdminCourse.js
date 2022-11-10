@@ -15,6 +15,7 @@ const AdminCourse = observer(() => {
   const { user } = useContext(Context) 
   const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
   const navigate = useNavigate()
+  const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
 
   const removeCourseFunc = async(id)=>{
       if (user.user.role === 'SUPERADMIN'){
@@ -25,6 +26,9 @@ const AdminCourse = observer(() => {
       (async function(){
           await getAllCourse().then((data) => setCourses(data));
       })()
+      if (user.user.role !== 'SUPERADMIN'){
+        setRemoveBtn('d-none')
+      }
   }, [] )
   
 
@@ -35,11 +39,10 @@ const AdminCourse = observer(() => {
     "Döredilen wagty",
     "Düwmeler",
   ];
-  console.log(courses);
   return (
     <div>
       <Navbar />
-      <div className="container mt-3">
+      <div className="mx-5 mt-3">
         <div className="add-new my-3 text-end">
             <button onClick={() => setModalAddCourseVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
@@ -56,7 +59,7 @@ const AdminCourse = observer(() => {
                 <Link to={ADMIN_ROUTE_USERS}>Diňleýjiler</Link>
               </li>
               <li
-                className="d-block btn btn-outline-primary mb-3"
+                className="d-block btn btn-primary mb-3"
                 data-type="title-type"
               >
                 <Link to={ADMIN_COURSE_ROUTE}>Kurslar</Link>
@@ -78,27 +81,27 @@ const AdminCourse = observer(() => {
                 <tbody>
                   {courses.map((i) => (
                     <tr key={i.id}>
-                      <td className="p-1">{i.id}</td>
-                      <td className="p-1 w-25">{i.name}</td>
-                      <td className="p-1 w-25">{i.description}</td>
-                      <td className="p-1">{i.createdAt}</td>
-                      <td className="p-1 text-center d-flex">
+                      <td className="table-node p-1">{i.id}</td>
+                      <td className="table-node p-1 w-25">{i.name}</td>
+                      <td className="table-node p-1 w-25">{i.description}</td>
+                      <td className="table-node p-1">{i.createdAt}</td>
+                      <td className="table-node p-1 text-center d-flex">
                         <button
                           onClick={() => navigate(`/admin/course/${i.id}`)}
-                          className="btn btn-success mx-2"
+                          className="btn btn-success mx-1"
                         >
                           Wideolar
                         </button>
                         <button
                         //   onClick={() => removeCourseFunc(i.id)}
-                          className="btn btn-primary mx-2"
+                          className="btn btn-primary mx-1"
                         >
-                          Üýtgetmek
+                          <i class="fas fa-video"></i>
                         </button>
                         <button
                           onClick={() => removeCourseFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
-                          className="btn btn-danger"
+                          className={removeBtn}
                         >
                           Pozmak
                         </button>

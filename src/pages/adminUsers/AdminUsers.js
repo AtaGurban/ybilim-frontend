@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import { ADMIN_COURSE_ROUTE, ADMIN_ROUTE_USERS } from "../../utils/pathConsts";
 import styles from "./admincourse.module.css";
-import { removeCourse } from "../../http/courseApi";
 import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
 import Pagination from 'react-bootstrap/Pagination';
-import { getAllUsers } from "../../http/userAPI";
+import { getAllUsers, removeUser } from "../../http/userAPI";
 import ModalBuyCourse from "../../components/ModalBuyCourse";
 import ModalEditUser from "../../components/ModalEditUser";
 
@@ -21,16 +19,20 @@ const AdminUsers = observer(() => {
     const { user } = useContext(Context) 
     const [modalBuyCourseVisible, setModalBuyCourseVisible] = useState(false)
     const [modalEditUserVisible, setModalEditUserVisible] = useState(false)
+    const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
 
-    const removeCourseFunc = async(id)=>{
+    const removeUserFunc = async(id)=>{
         if (user.user.role === 'SUPERADMIN'){
-          await removeCourse(id).then((data)=> window.location.reload())
+          await removeUser(id).then((data)=> window.location.reload())
         }
     }
     useEffect(()=>{
         (async function(){
             await getAllUsers(active).then((data) => {setUsers(data.rows); setPaginationCount(data.count)});
         })()
+        if (user.user.role !== 'SUPERADMIN'){
+          setRemoveBtn('d-none')
+        }
     }, [active] )
 
     const setUser = (id, name)=>{
@@ -67,7 +69,7 @@ const AdminUsers = observer(() => {
   return (
     <div>
       <Navbar />
-      <div className="container mt-3">
+      <div className="mx-5 mt-5">
         <ModalBuyCourse userId = {userId} userName={userName} show={modalBuyCourseVisible} onHide={() => setModalBuyCourseVisible(false)} />
         <ModalEditUser userId = {userId} userName={userName} show={modalEditUserVisible} onHide={() => setModalEditUserVisible(false)}/>
         <div className="row">
@@ -76,7 +78,7 @@ const AdminUsers = observer(() => {
           >
             <ul>
               <li
-                className="d-block btn btn-outline-primary mb-3"
+                className="d-block btn btn-primary mb-3"
                 data-type="type"
               >
                 <Link to={ADMIN_ROUTE_USERS}>Diňleýjiler</Link>
@@ -104,14 +106,14 @@ const AdminUsers = observer(() => {
                 <tbody>
                   {users.map((i) => (
                     <tr key={i.id}>
-                      <td className="p-1">{i.id}</td>
-                      <td className="p-1">{i.first_name}</td>
-                      <td className="p-1">{i.phone}</td>
-                      <td className="p-1">{i.email}</td>
-                      <td className="p-1">{`${i.thisTeacher}`}</td>
-                      <td className="p-1 w-50">{i.description}</td>
-                      <td className="p-1">{i.createdAt}</td>
-                      <td className="p-1 text-center">
+                      <td className="table-node p-1">{i.id}</td>
+                      <td className="table-node p-1">{i.first_name}</td>
+                      <td className="table-node p-1">{i.phone}</td>
+                      <td className="table-node p-1">{i.email}</td>
+                      <td className="table-node p-1">{`${i.thisTeacher}`}</td>
+                      <td className="table-node p-1 w-50">{i.description}</td>
+                      <td className="table-node p-1">{i.createdAt}</td>
+                      <td className="table-node p-1 text-center">
                         <button
                           onClick={() => buyCourse(i.id, i.first_name)}
                           className="btn btn-success mx-2 my-2"
@@ -125,9 +127,9 @@ const AdminUsers = observer(() => {
                           Üýtgetmek
                         </button>
                         <button
-                          // onClick={() => removeCourseFunc(i.id)}
+                          onClick={() => removeUserFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
-                          className="btn btn-danger"
+                          className={removeBtn}
                         >
                           Pozmak
                         </button>

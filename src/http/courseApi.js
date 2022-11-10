@@ -16,13 +16,17 @@ export const getAllCourse = async ()=>{
     return data
 }
 
+export const getFavouriteCourse = async ()=>{
+    const {data} = await $host.get('api/admin/get-favourite-course')
+    return data
+}
+
 export const getMyCourse = async (id)=>{
     const {data} = await $authhost.get(`api/user/my-courses?userId=${id}`)
     return data
 }
 export const getAllVideosByCourseId = async (id)=>{
     const {data} = await $host.get(`api/admin/getvideo?id=${id}`)
-    console.log(data);
     return data
 }
 

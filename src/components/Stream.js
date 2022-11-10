@@ -16,19 +16,18 @@ const Stream = () => {
 
     useEffect(() => {
       (async function () {
-        await getOneCourseAndVideo(params.id).then((data) => {setCourse(data.video); setNextVideoId(data.nextVideoId)}).finally(() => setLoading(false));
+        await getOneCourseAndVideo(params.id).then((data) => {setCourse(data.video); setNextVideoId(data.nextVideoId); setTeacher(data.teacher)}).finally(() => setLoading(false));
         // await getOneUsers(course.course.teacher).then((data) => setTeacher(data))
       })();
     }, [params]);
     
-    console.log(course);
     if(loading){
       return (
         <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
         <Spinner animation={'grow'}/>
       </div>)
     }
-    
+    console.log(teacher);
     return (
       <div>
         <Navbar/>
@@ -51,8 +50,8 @@ const Stream = () => {
                 <Link to={`/stream/${nextVideoId}`}>Indiki</Link>
             </div>
             <div className="kesha mb-5">
-                <h5><img src="http://localhost:5000/api/static/fd59cf90-5eda-41a7-8cce-142a972e718e.jpg" alt=""/>KESHA REJEPOW</h5>
-                <p> Kesha Rejepow birnäçe biznes we marketing programmalarynyñ eýesi, " ýönekeý" hususy kärhanasynyñ direktory, şeyle hem Turkmenistanda adybelli yonekey_com, yonekey_devolopers, yonekey_lomaysowda, yonekeystore online platformalaryny esaslandyjy.</p>
+                <h5><img src={`http://localhost:5000/api/static/${teacher.avatar}`} alt=""/>{teacher.first_name}</h5>
+                <p>{teacher.description}</p>
             </div>
             {/* <p>{course.description}</p> */}
           </div>
