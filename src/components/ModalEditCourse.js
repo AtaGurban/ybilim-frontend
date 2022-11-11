@@ -3,7 +3,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { update } from "../http/userAPI";
 import { Context } from "..";
 
-const ModalEditUser = ({ show, onHide, userId, userName, role, isTeacherTwo }) => {
+const ModalEditCourse = ({ show, onHide, userId, userName, role, isTeacherTwo, name }) => {
   const [isTeacher, setIsTeacher] = useState(isTeacherTwo);
   const [isAdmin, setIsAdmin] = useState(false);
   const { user } = useContext(Context) 
@@ -50,7 +50,7 @@ console.log(isAdmin);
       <Modal show={show} onHide={onHide} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {userName} ulanyjyny üýtgetmek
+            {name} kursy üýtgetmek
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -106,4 +106,4 @@ console.log(isAdmin);
   );
 };
 
-export default ModalEditUser;
+export default ModalEditCourse;

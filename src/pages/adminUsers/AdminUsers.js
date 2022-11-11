@@ -15,11 +15,13 @@ const AdminUsers = observer(() => {
     const [active, setActive] = useState(1)
     const [userId, setUserId] = useState(null)
     const [userName, setUserName] = useState('')
+    const [isTeacher, setIsTeacher] = useState(false)
+    const [role, setRole] = useState('USER')
     const [paginationCount, setPaginationCount] = useState(1)
     const { user } = useContext(Context) 
     const [modalBuyCourseVisible, setModalBuyCourseVisible] = useState(false)
     const [modalEditUserVisible, setModalEditUserVisible] = useState(false)
-    const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
+    const [removeBtn, setRemoveBtn] = useState('btn btn-danger col-3 mx-2 my-2')
 
     const removeUserFunc = async(id)=>{
         if (user.user.role === 'SUPERADMIN'){
@@ -35,9 +37,11 @@ const AdminUsers = observer(() => {
         }
     }, [active] )
 
-    const setUser = (id, name)=>{
+    const setUser = (id, name, isTeacher, role)=>{
       setUserId(id)
       setUserName(name)
+      setIsTeacher(isTeacher)
+      setRole(role)
       setModalEditUserVisible(true)
     }
 
@@ -71,7 +75,7 @@ const AdminUsers = observer(() => {
       <Navbar />
       <div className="mx-5 mt-5">
         <ModalBuyCourse userId = {userId} userName={userName} show={modalBuyCourseVisible} onHide={() => setModalBuyCourseVisible(false)} />
-        <ModalEditUser userId = {userId} userName={userName} show={modalEditUserVisible} onHide={() => setModalEditUserVisible(false)}/>
+        <ModalEditUser userId = {userId} userName={userName} show={modalEditUserVisible} role={role} isTeacherTwo={isTeacher} onHide={() => setModalEditUserVisible(false)}/>
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
@@ -111,28 +115,31 @@ const AdminUsers = observer(() => {
                       <td className="table-node p-1">{i.phone}</td>
                       <td className="table-node p-1">{i.email}</td>
                       <td className="table-node p-1">{`${i.thisTeacher}`}</td>
-                      <td className="table-node p-1 w-50">{i.description}</td>
+                      <td className="table-node p-1 ">{i.description}</td>
                       <td className="table-node p-1">{i.createdAt}</td>
                       <td className="table-node p-1 text-center">
+                        <div className="d-flex justify-content-center">
+
                         <button
-                          onClick={() => buyCourse(i.id, i.first_name)}
-                          className="btn btn-success mx-2 my-2"
+                          onClick={() => buyCourse(i.id, i.first_name, )}
+                          className="btn btn-success mx-2 my-2 "
                         >
-                          Kurs bermek
+                          <i className="fas fa-user-graduate"></i>
                         </button>
                         <button
-                          onClick={() => setUser(i.id, i.first_name)}
-                          className="btn btn-primary mx-2 my-2"
+                          onClick={() => setUser(i.id, i.first_name, i.thisTeacher, i.role)}
+                          className="btn btn-primary mx-2 my-2 "
                         >
-                          Üýtgetmek
+                          <i className="fas fa-cogs"></i>
                         </button>
                         <button
                           onClick={() => removeUserFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className={removeBtn}
                         >
-                          Pozmak
+                          <i className="fas fa-trash-alt"></i>
                         </button>
+                        </div>
                       </td>
                     </tr>
                   ))}

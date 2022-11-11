@@ -9,11 +9,14 @@ import { observer } from "mobx-react-lite";
 import { getAllCourse } from "../../http/courseApi";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
+import ModalEditCourse from "../../components/ModalEditCourse";
 
 const AdminCourse = observer(() => {
   const [courses, setCourses] = useState([])
   const { user } = useContext(Context) 
+  const [currentCourseName, setCurrentCourseName] = useState('')
   const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
+  const [modalEditCourseVisible, setModalEditCourseVisible] = useState(false)
   const navigate = useNavigate()
   const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
 
@@ -30,6 +33,12 @@ const AdminCourse = observer(() => {
         setRemoveBtn('d-none')
       }
   }, [] )
+
+
+  const editCourse = (name)=>{
+    setCurrentCourseName(name)
+    setModalEditCourseVisible(true)
+  }
   
 
   const tableAttributes = [
@@ -46,6 +55,7 @@ const AdminCourse = observer(() => {
         <div className="add-new my-3 text-end">
             <button onClick={() => setModalAddCourseVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
+        <ModalEditCourse name={currentCourseName} show={modalEditCourseVisible} onHide={() => setModalEditCourseVisible(false)}/>
         <ModalAddCourse show={modalAddCourseVisible} onHide={() => setModalAddCourseVisible(false)} />
         <div className="row">
           <div
@@ -85,26 +95,28 @@ const AdminCourse = observer(() => {
                       <td className="table-node p-1 w-25">{i.name}</td>
                       <td className="table-node p-1 w-25">{i.description}</td>
                       <td className="table-node p-1">{i.createdAt}</td>
-                      <td className="table-node p-1 text-center d-flex">
+                      <td className="table-node p-1 text-center justify-content-center">
+                        <div className="d-flex justify-content-center">
                         <button
                           onClick={() => navigate(`/admin/course/${i.id}`)}
                           className="btn btn-success mx-1"
                         >
-                          Wideolar
+                          <i className="fas fa-video"></i>
                         </button>
                         <button
-                        //   onClick={() => removeCourseFunc(i.id)}
+                          onClick={() => editCourse(i.name)}
                           className="btn btn-primary mx-1"
                         >
-                          <i class="fas fa-video"></i>
+                          <i className="fas fa-cogs"></i>
                         </button>
                         <button
                           onClick={() => removeCourseFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className={removeBtn}
                         >
-                          Pozmak
+                          <i className="fas fa-trash-alt"></i>
                         </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
