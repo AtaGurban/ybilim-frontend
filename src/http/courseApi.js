@@ -49,3 +49,8 @@ export const removeVideo = async (id)=>{
     const {data} = await $authhost.delete(`api/admin/remove-video?id=${id}`)
     return data
 }
+
+export const updateCourse = async (item)=>{
+    const {data} = await $authhost.put('api/admin/update-course', item)
+    return data
+}

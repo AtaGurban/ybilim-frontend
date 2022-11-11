@@ -87,12 +87,12 @@ const AdminUsers = observer(() => {
               >
                 <Link to={ADMIN_ROUTE_USERS}>Diňleýjiler</Link>
               </li>
-              <li
+              <Link to={ADMIN_COURSE_ROUTE}><li
                 className="d-block btn btn-outline-primary mb-3"
                 data-type="title-type"
               >
-                <Link to={ADMIN_COURSE_ROUTE}>Kurslar</Link>
-              </li>
+                Kurslar
+              </li></Link>
             </ul>
           </div>
           <div className="admin-inform flex-column d-flex col-10 px-4">

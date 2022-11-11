@@ -14,7 +14,7 @@ import ModalEditCourse from "../../components/ModalEditCourse";
 const AdminCourse = observer(() => {
   const [courses, setCourses] = useState([])
   const { user } = useContext(Context) 
-  const [currentCourseName, setCurrentCourseName] = useState('')
+  const [currentCourse, setCurrentCourse] = useState('')
   const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
   const [modalEditCourseVisible, setModalEditCourseVisible] = useState(false)
   const navigate = useNavigate()
@@ -35,8 +35,8 @@ const AdminCourse = observer(() => {
   }, [] )
 
 
-  const editCourse = (name)=>{
-    setCurrentCourseName(name)
+  const editCourse = (course)=>{
+    setCurrentCourse(course)
     setModalEditCourseVisible(true)
   }
   
@@ -55,19 +55,19 @@ const AdminCourse = observer(() => {
         <div className="add-new my-3 text-end">
             <button onClick={() => setModalAddCourseVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
-        <ModalEditCourse name={currentCourseName} show={modalEditCourseVisible} onHide={() => setModalEditCourseVisible(false)}/>
+        <ModalEditCourse course={currentCourse} show={modalEditCourseVisible} onHide={() => setModalEditCourseVisible(false)}/>
         <ModalAddCourse show={modalAddCourseVisible} onHide={() => setModalAddCourseVisible(false)} />
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
           >
-            <ul>
+            <ul><Link to={ADMIN_ROUTE_USERS}>
               <li
                 className="d-block btn btn-outline-primary mb-3"
                 data-type="type"
               >
-                <Link to={ADMIN_ROUTE_USERS}>Diňleýjiler</Link>
-              </li>
+                Diňleýjiler
+              </li></Link>
               <li
                 className="d-block btn btn-primary mb-3"
                 data-type="title-type"
@@ -104,7 +104,7 @@ const AdminCourse = observer(() => {
                           <i className="fas fa-video"></i>
                         </button>
                         <button
-                          onClick={() => editCourse(i.name)}
+                          onClick={() => editCourse(i)}
                           className="btn btn-primary mx-1"
                         >
                           <i className="fas fa-cogs"></i>

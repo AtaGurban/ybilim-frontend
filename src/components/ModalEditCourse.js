@@ -3,27 +3,24 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { update } from "../http/userAPI";
 import { Context } from "..";
 
-const ModalEditCourse = ({ show, onHide, userId, userName, role, isTeacherTwo, name }) => {
-  const [isTeacher, setIsTeacher] = useState(isTeacherTwo);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const { user } = useContext(Context) 
+const ModalEditCourse = ({ show, onHide, course }) => {
+  const [courseName, setCourseName] = useState("");
+  const [favCourse, setFavCourse] = useState(false);
   const [description, setDescription] = useState("");
-  const [password, setPassword] = useState("");
-  const [img, setImg] = useState(null)
+  const [img, setImg] = useState(null);
 
   const selectFileImg = (e) => {
-      setImg(e.target.files[0])
-  }
+    setImg(e.target.files[0]);
+  };
   const addCourse = () => {
     const formData = new FormData();
-
-    formData.append("isTeacher", isTeacher);
+    formData.append("id", course.id);
+    formData.append("courseName", courseName);
     formData.append("description", description);
-    formData.append("password", password);
-    formData.append('img', img)
-    formData.append("userId", userId);
-    formData.append("role", isAdmin);
-
+    formData.append("favCourse", setDescription);
+    if (img){
+      formData.append('img', img)
+    }
 
     update(formData).then((data) => {
       try {
@@ -35,61 +32,61 @@ const ModalEditCourse = ({ show, onHide, userId, userName, role, isTeacherTwo, n
       }
     });
   };
-  useEffect(()=>{
-    setIsAdmin(role !== 'USER')
-  }, [role])
+  useEffect(() => {
+    setCourseName(course.name);
+    setFavCourse(course.favourite);
+    setDescription(course.description);
+  }, [course]);
 
-  useEffect(()=>{
-    setIsTeacher(isTeacherTwo)
-  }, [isTeacherTwo])
-
-console.log(isAdmin);
+  console.log(course);
 
   return (
     <div>
       <Modal show={show} onHide={onHide} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {name} kursy üýtgetmek
+            {courseName} kursy üýtgetmek
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <span className="mt-3 c-bold">Mugallym barada</span>
+            <span className="mt-3 c-bold">Kursun ady</span>
+            <Form.Control
+              className="my-3"
+              value={courseName}
+              onChange={(e) => setCourseName(e.target.value)}
+              placeholder={"Kursun ady"}
+            />
+            <hr />
+            <span className="mt-3 c-bold">Kursun beýany</span>
             <Form.Text
               as="textarea"
               className="my-3"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder={"Mugallym barada"}
+              placeholder={"Kursun beýany"}
             />
             <hr />
-            <span className="mt-3 c-bold">Açarsözi täzele</span>
+            <div className="my-3">
+              <img
+                height='250px'
+                src={`${process.env.REACT_APP_API_URL}/api/static/${course.img}`}
+                alt=""
+              />
+            </div>
+            <span className="mt-3 c-bold">Surat</span>
             <Form.Control
               className="my-3"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder={"Açarsözi täzele"}
-            />
-            <hr />
-            <span className="mt-3 c-bold">Surat</span>
-            <Form.Control  className="my-3" type="file" onChange={selectFileImg} />
-            <hr />
-            <Form.Check
-              type="switch"
-              id="custom-switch"
-              label="Mugallymmy?"
-              onChange={() => setIsTeacher(!isTeacher)}
-              checked={isTeacher}
+              type="file"
+              onChange={selectFileImg}
             />
             <hr />
             <Form.Check
               type="switch"
               id="custom-switch"
-              label="Admin et"
-              checked={isAdmin}
-              className={(user.user.role === 'SUPERADMIN') ? 'd-block' : 'd-none'}
-              onChange={() => setIsAdmin(!isAdmin)}
+              label="Saýlanan kursmy?"
+              onChange={() => setFavCourse(!favCourse)}
+              checked={favCourse}
             />
           </Form>
         </Modal.Body>

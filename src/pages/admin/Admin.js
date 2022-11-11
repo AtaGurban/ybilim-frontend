@@ -14,8 +14,8 @@ const Admin = observer(() => {
                 <div className="row">
                     <div className={`${styles['admin-nav']} flex-column d-flex col-2 p-2`}>
                         <ul>
-                            <li className='d-block btn btn-outline-primary mb-3' data-type='type' ><Link to={ADMIN_ROUTE_USERS}>Diňleýjiler</Link></li>
-                            <li className='d-block btn btn-outline-primary mb-3' data-type='title-type' ><Link to={ADMIN_COURSE_ROUTE}>Kurslar</Link></li>
+                            <Link to={ADMIN_ROUTE_USERS}><li className='d-block btn btn-outline-primary mb-3' data-type='type' >Diňleýjiler</li></Link>
+                            <Link to={ADMIN_COURSE_ROUTE}><li className='d-block btn btn-outline-primary mb-3' data-type='title-type' >Kurslar</li></Link>
                         </ul>
                     </div>
                     <div className="admin-inform flex-column d-flex col-10 px-4">
