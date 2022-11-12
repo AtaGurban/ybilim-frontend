@@ -4,6 +4,7 @@ import { getMyCourse } from '../../http/courseApi';
 import styles from './myCourses.module.css'
 import { Context } from '../..';
 import CourseCard from '../../components/CourseCard/CourseCard';
+import Footer from '../../components/Footer/Footer';
 
 const MyCourses = () => {
     const [courses, setCourses] = useState([])
@@ -27,6 +28,7 @@ const MyCourses = () => {
                     }
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

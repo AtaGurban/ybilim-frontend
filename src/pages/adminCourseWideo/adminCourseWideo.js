@@ -7,6 +7,7 @@ import { getAllVideosByCourseId, removeVideo } from "../../http/courseApi";
 import { observer } from "mobx-react-lite";
 import ModalAddVideo from "../../components/ModalAddVideo";
 import { Context } from "../..";
+import ModalEditVideo from "../../components/ModalEditVideo";
 
 const AdminCourseWideo = observer(() => {
     const [wideos, setWideos] = useState([])
@@ -14,6 +15,8 @@ const AdminCourseWideo = observer(() => {
     const { user } = useContext(Context) 
     const params = useParams()
     const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
+    const [modalEditCourseVisible, setModalEditCourseVisible] = useState(false)
+    const [currentVideo, setCurrentVideo] = useState({})
 
     const removeVideoFunc = async(id)=>{
       if (user.user.role === 'SUPERADMIN'){
@@ -29,10 +32,14 @@ const AdminCourseWideo = observer(() => {
         }
     }, [] )
 
+    const editWideo = (video)=>{
+      setCurrentVideo(video)
+      setModalEditCourseVisible(true)
+    }
+
   const tableAttributes = [
     "id",
     "Ady",
-    "Beyany",
     "tertibi",
     "Döredilen wagty",
     "Düwmeler",
@@ -45,6 +52,7 @@ const AdminCourseWideo = observer(() => {
             <button onClick={() => setModalAddCourseVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
         <ModalAddVideo show={modalAddCourseVisible} onHide={() => setModalAddCourseVisible(false)} />
+        <ModalEditVideo video={currentVideo} show={modalEditCourseVisible} onHide={() => setModalEditCourseVisible(false)}/>
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
@@ -79,25 +87,27 @@ const AdminCourseWideo = observer(() => {
                 <tbody>
                   {wideos.map((i) => (
                     <tr key={i.id}>
-                      <td className="p-1">{i.id}</td>
-                      <td className="p-1 w-25">{i.name}</td>
-                      <td className="p-1 w-25">{i.description}</td>
-                      <td className="p-1">{i.number}</td>
-                      <td className="p-1">{i.createdAt}</td>
-                      <td className="p-1 text-center d-flex">
-                        <button
-                          // onClick={() => navigate(`/admin/course/${i.id}`)}
-                          className="btn btn-primary mx-2"
-                        >
-                          Üýtgetmek
-                        </button>
-                        <button
-                          onClick={() => removeVideoFunc(i.id)}
-                          disabled={(user.user.role !== 'SUPERADMIN')}
-                          className={removeBtn}
-                        >
-                          Pozmak
-                        </button>
+                      <td className="table-node p-1">{i.id}</td>
+                      <td className="table-node p-1 w-25">{i.name}</td>
+                      {/* <td className="p-1 w-25">{i.description}</td> */}
+                      <td className="table-node p-1">{i.number}</td>
+                      <td className="table-node p-1">{i.createdAt}</td>
+                      <td className="table-node p-1 text-center justify-content-center">
+                        <div className="d-flex justify-content-center">
+                          <button
+                            onClick={() => editWideo(i)}
+                            className="btn btn-primary mx-2"
+                          >
+                            <i className="fas fa-cogs"></i>
+                          </button>
+                          <button
+                            onClick={() => removeVideoFunc(i.id)}
+                            disabled={(user.user.role !== 'SUPERADMIN')}
+                            className={removeBtn}
+                          >
+                            <i className="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}

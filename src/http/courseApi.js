@@ -54,3 +54,8 @@ export const updateCourse = async (item)=>{
     const {data} = await $authhost.put('api/admin/update-course', item)
     return data
 }
+
+export const updateVideoApi = async (item)=>{
+    const {data} = await $authhost.put('api/admin/update-video', item)
+    return data
+}

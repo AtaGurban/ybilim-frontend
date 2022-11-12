@@ -1,7 +1,8 @@
-import { React, useState, useContext, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { update } from "../http/userAPI";
-import { Context } from "..";
+import { updateCourse } from "../http/courseApi";
+
+
 
 const ModalEditCourse = ({ show, onHide, course }) => {
   const [courseName, setCourseName] = useState("");
@@ -17,12 +18,12 @@ const ModalEditCourse = ({ show, onHide, course }) => {
     formData.append("id", course.id);
     formData.append("courseName", courseName);
     formData.append("description", description);
-    formData.append("favCourse", setDescription);
+    formData.append("favCourse", favCourse);
     if (img){
       formData.append('img', img)
     }
 
-    update(formData).then((data) => {
+    updateCourse(formData).then((data) => {
       try {
         onHide();
         window.location.reload();
@@ -32,13 +33,15 @@ const ModalEditCourse = ({ show, onHide, course }) => {
       }
     });
   };
+
+
   useEffect(() => {
     setCourseName(course.name);
     setFavCourse(course.favourite);
     setDescription(course.description);
   }, [course]);
 
-  console.log(course);
+
 
   return (
     <div>

@@ -248,12 +248,12 @@ h1 {
   font-weight: 600;
   margin-top: 17px;
 }
-p {
+/* p {
   width: 100%;
   opacity: .9;
   font-weight: 500;
   margin-top: 7px;
-}
+} */
 @media(max-width:800px){
   h1 {
       font-size: 30px;

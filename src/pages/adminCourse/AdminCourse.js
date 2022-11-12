@@ -92,7 +92,7 @@ const AdminCourse = observer(() => {
                   {courses.map((i) => (
                     <tr key={i.id}>
                       <td className="table-node p-1">{i.id}</td>
-                      <td className="table-node p-1 w-25">{i.name}</td>
+                      <td className="table-node p-1 w-25">{i.name}</td> 
                       <td className="table-node p-1 w-25">{i.description}</td>
                       <td className="table-node p-1">{i.createdAt}</td>
                       <td className="table-node p-1 text-center justify-content-center">
