@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { COURSE_ROUTE } from "../../utils/pathConsts";
 import styles from './courseCard.module.css'
 
 const CourseCard = ({img, title, id}) => {

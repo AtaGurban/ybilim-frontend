@@ -55,7 +55,7 @@ const MainPage = observer(() => {
           </div>
           {user.isAuth ? (
             <div className={`${styles["btn-main-page"]} container text-end d-flex`}>
-              <button className="btn-my-courses me-2 text-start "><Link to={MY_COURSES}>KURSLARYM</Link></button>  
+              {/* <button className="btn-my-courses me-2 text-start "><Link to={MY_COURSES}>KURSLARYM</Link></button>   */}
               {(user.user.role !== 'USER') ?<button className="btn-my-courses me-2 text-start"><Link to={ADMIN_ROUTE}>Admin panel</Link></button>  : null}
             </div>
           ) : (
@@ -83,9 +83,16 @@ const MainPage = observer(() => {
             <div className={`${styles["mini_button_block"]}`}>
               <a href="#china">Hytaýa Gitjek</a>
             </div>
-            <div className={`${styles["mini_button_block"]}`}>
+            {
+              user.isAuth ? (<div className={`${styles["mini_button_block"]}`}>
+              <Link to={MY_COURSES}>Kurslarym</Link>
+            </div>) : (<div className={`${styles["mini_button_block"]}`}>
               <a href="#auth-block">Kursa ýazyljak</a>
-            </div>
+            </div>)
+            }
+            {/* <div className={`${styles["mini_button_block"]}`}>
+              <a href="#auth-block">Kursa ýazyljak</a>
+            </div> */}
           </div>
         </div>
       </header>

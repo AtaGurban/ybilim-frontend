@@ -10,8 +10,7 @@
     width: 100%;
     background: #050811;
     position: relative;
-    bottom: -63vh;
-    
+    bottom: 0px;
 }
 
 .container {
@@ -31,6 +30,7 @@
 .footer_menu {
     display: flex;
     justify-content: start;
+    margin-bottom: 0;
 }
 
 .footer_menu li {
@@ -47,4 +47,11 @@
     display: flex;
     align-items: center;
     opacity: .8;
+}
+
+@media (max-width: 880px){
+    .footer_container {
+        justify-content: center;
+        align-items: center;
+    }
 }

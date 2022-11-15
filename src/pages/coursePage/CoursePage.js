@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar';
 import { getOneCourse } from '../../http/courseApi';
 import styles from "./coursePage.module.css";
 import { Spinner } from 'react-bootstrap';
+import Footer from '../../components/Footer/Footer';
 
 
 
@@ -26,6 +27,7 @@ const CoursePage = () => {
   }
     // console.log(course);
     return (
+        <div className='wrapper-all'>
         <div className={`${styles['wrapper']}`}>
             <Navbar/>
             <div>
@@ -48,6 +50,8 @@ const CoursePage = () => {
                     </div>
                 </section>
             </div>
+        </div>
+            <Footer/>
         </div>
     );
 };

@@ -100,12 +100,14 @@ const AdminCourse = observer(() => {
                         <button
                           onClick={() => navigate(`/admin/course/${i.id}`)}
                           className="btn btn-success mx-1"
+                          title="Wideolar"
                         >
                           <i className="fas fa-video"></i>
                         </button>
                         <button
                           onClick={() => editCourse(i)}
                           className="btn btn-primary mx-1"
+                          title="Üýtgetmek"
                         >
                           <i className="fas fa-cogs"></i>
                         </button>
@@ -113,6 +115,7 @@ const AdminCourse = observer(() => {
                           onClick={() => removeCourseFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className={removeBtn}
+                          title="Pozmak"
                         >
                           <i className="fas fa-trash-alt"></i>
                         </button>

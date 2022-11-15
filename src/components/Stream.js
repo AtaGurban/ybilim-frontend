@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { getOneCourseAndVideo } from '../http/courseApi';
 import Navbar from './Navbar';
 import { Spinner } from 'react-bootstrap';
-import { getOneUsers } from '../http/userAPI';
+// import { getOneUsers } from '../http/userAPI';
+import Footer from './Footer/Footer';
 
 
 const Stream = () => {
@@ -27,7 +28,6 @@ const Stream = () => {
         <Spinner animation={'grow'}/>
       </div>)
     }
-    console.log(teacher);
     return (
       <div>
         <Navbar/>
@@ -56,6 +56,7 @@ const Stream = () => {
             {/* <p>{course.description}</p> */}
           </div>
         </div>
+        <Footer/>
       </div>
     );
 };

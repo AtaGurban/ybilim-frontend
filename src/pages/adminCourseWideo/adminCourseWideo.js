@@ -97,6 +97,7 @@ const AdminCourseWideo = observer(() => {
                           <button
                             onClick={() => editWideo(i)}
                             className="btn btn-primary mx-2"
+                            title="Üýtgetmek"
                           >
                             <i className="fas fa-cogs"></i>
                           </button>
@@ -104,6 +105,7 @@ const AdminCourseWideo = observer(() => {
                             onClick={() => removeVideoFunc(i.id)}
                             disabled={(user.user.role !== 'SUPERADMIN')}
                             className={removeBtn}
+                            title="Pozmak"
                           >
                             <i className="fas fa-trash-alt"></i>
                           </button>

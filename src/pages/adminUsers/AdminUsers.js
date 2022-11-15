@@ -123,12 +123,14 @@ const AdminUsers = observer(() => {
                         <button
                           onClick={() => buyCourse(i.id, i.first_name, )}
                           className="btn btn-success mx-2 my-2 "
+                          title="Kurs bermek"
                         >
                           <i className="fas fa-user-graduate"></i>
                         </button>
                         <button
                           onClick={() => setUser(i.id, i.first_name, i.thisTeacher, i.role)}
                           className="btn btn-primary mx-2 my-2 "
+                          title="Üýtgetmek"
                         >
                           <i className="fas fa-cogs"></i>
                         </button>
@@ -136,6 +138,7 @@ const AdminUsers = observer(() => {
                           onClick={() => removeUserFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className={removeBtn}
+                          title="Pozmak"
                         >
                           <i className="fas fa-trash-alt"></i>
                         </button>
