@@ -16,7 +16,6 @@ const Auth = () => {
     try {
       if (phone && password){
         const data = await login(phone, password)
-        console.log(data);
         user.setUser(data);
         user.setIsAuth(true);
         navigate(MAIN_PAGE);

@@ -24,7 +24,7 @@ const selectFileVideo = (e) => {
 
     useEffect(()=>{
         if (loaderPercent === 100){
-            window.location.reload()
+            // window.location.reload()
         }
     }, [loaderPercent])
 
@@ -46,10 +46,14 @@ const addCourse = async()=>{
             setLoaderClass('progress')
         }
     }
-
-    await createVideo(formData, options).then((data) => {
-      console.log(data);
-    });
+    try {
+      await createVideo(formData, options).then((data) => {
+        window.location.reload()
+      });
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.message)
+    }
 }
   return (
     <>

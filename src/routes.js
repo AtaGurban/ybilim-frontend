@@ -1,15 +1,17 @@
 import Stream from "./components/Stream";
 import Upload from "./components/Upload";
 import Admin from "./pages/admin/Admin";
+import AdminCity from "./pages/adminCity/AdminCity";
 import AdminCourse from "./pages/adminCourse/AdminCourse";
 import AdminCourseWideo from "./pages/adminCourseWideo/adminCourseWideo";
 import AdminUsers from "./pages/adminUsers/AdminUsers";
 import Auth from "./pages/auth/Auth";
 import CoursePage from "./pages/coursePage/CoursePage";
+import EducationPage from "./pages/educationPage/EducationPage";
 import MainPage from "./pages/mainPage/MainPage";
 import MyCourses from "./pages/myCourses/MyCourses";
 
-import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE } from "./utils/pathConsts";
+import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE, EDUCATION_ROUTE, ADMIN_EDUCATION_ROUTE } from "./utils/pathConsts";
 
 
 // export const authRoutes = [
@@ -37,6 +39,10 @@ export const authRoutes = [
         path: COURSE_ROUTE,
         Element: <CoursePage/>
     },
+    {
+        path: EDUCATION_ROUTE,
+        Element: <EducationPage/>
+    },
 
 ]
 export const publicRoutes = [
@@ -47,6 +53,10 @@ export const publicRoutes = [
     {
         path: AUTH_PAGE,
         Element: <Auth/>
+    },
+    {
+        path: EDUCATION_ROUTE,
+        Element: <EducationPage/>
     },
 
 
@@ -88,7 +98,14 @@ export const adminRoutes = [
         path: COURSE_ROUTE,
         Element: <CoursePage/>
     },
-
+    {
+        path: EDUCATION_ROUTE,
+        Element: <EducationPage/>
+    },
+    {
+        path: ADMIN_EDUCATION_ROUTE,
+        Element: <AdminCity/>
+    },
 ]
 
 

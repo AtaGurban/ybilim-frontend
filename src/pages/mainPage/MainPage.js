@@ -16,7 +16,7 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../..";
 import { registration } from "../../http/userAPI";
 import { Link, useNavigate } from "react-router-dom";
-import { ADMIN_ROUTE, AUTH_PAGE, MAIN_PAGE, MY_COURSES } from "../../utils/pathConsts";
+import { ADMIN_ROUTE, AUTH_PAGE, MY_COURSES } from "../../utils/pathConsts";
 
 const MainPage = observer(() => {
   const [email, setEmail] = useState("");
@@ -24,25 +24,23 @@ const MainPage = observer(() => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const { user } = useContext(Context);
-  let navigate = useNavigate();
 
-//   useEffect(() => {
-//     navigate(JSON.parse(window.sessionStorage.getItem('lastRoute') || '{}'))
-//     window.onbeforeunload = () => {
-//         window.sessionStorage.setItem('lastRoute', JSON.stringify(window.location.pathname))
-//     }
-// }, [])
 
   const signUp = async () => {
     try {
       if (email && phone && name && password) {
+        if (password.split('').length < 8){
+          return alert('Acarsözi 8 simwoldan az bolmaly däl')
+        }
         const data = await registration(email, name, password, phone);
         user.setUser(data);
         user.setIsAuth(true);
         window.location.reload()
+      } else{
+        alert('Maglumatlar doly däl')
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      alert(error.response.data.message);
     }
   };
 
@@ -271,7 +269,7 @@ const MainPage = observer(() => {
       {!user.isAuth ? (
         <div
           id="auth-block"
-          className="container auth-block d-block text-center mb-5"
+          className="container auth-block d-block text-center pb-5"
         >
           <div className="form-name my-2">
             <label className="text-bold" htmlFor="name">

@@ -5,21 +5,24 @@ import { buyCourse } from "../http/userAPI";
 const ModalBuyCourse = ({ show, onHide, userId, userName }) => {
   const [courseNumber, setCourseNumber] = useState("");
 
-  const addCourse = () => {
+  const addCourse = async () => {
+    if (courseNumber === ''){
+      return alert('Maglumatlar doly dal')
+    }
     const formData = new FormData();
-
     formData.append("number", courseNumber);
     formData.append("userId", userId);
-
-    buyCourse(formData).then((data) => {
-      try {
+    
+    try {
+      await buyCourse(formData).then((data) => {
         onHide();
         window.location.reload();
-      } catch (error) {
-        console.log(error);
-        alert("error");
-      }
-    });
+      });
+    } catch (error) {
+      alert(error.response.data.message)
+      console.log(error);
+    }
+
   };
 
   return (

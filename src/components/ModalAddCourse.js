@@ -16,7 +16,7 @@ const ModalAddCourse = ({ show, onHide }) => {
   };
 
 
-  const addCourse = () => {
+  const addCourse = async () => {
     const formData = new FormData();
 
     formData.append("name", courseName);
@@ -33,16 +33,15 @@ const ModalAddCourse = ({ show, onHide }) => {
       },
     };
 
-    createCourse(formData, options).then((data) => {
-      try {
+    try {
+      await createCourse(formData, options).then((data) => {
         onHide();
         window.location.reload();
-      } catch (error) {
-        console.log(error);
-        alert('error')
-      }
+      });
+    } catch (error) {
+      alert(error.response.data.message);
+    }
 
-    });
   };
 
   return (

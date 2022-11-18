@@ -50,8 +50,8 @@ const Stream = () => {
                 <Link to={`/stream/${nextVideoId}`}>Indiki</Link>
             </div>
             <div className="kesha mb-5">
-                <h5><img src={`http://localhost:5000/api/static/${teacher.avatar}`} alt=""/>{teacher.first_name}</h5>
-                <p>{teacher.description}</p>
+                <h5><img src={`http://localhost:5000/api/static/${teacher?.avatar}`} alt=""/>{teacher?.first_name}</h5>
+                <p>{teacher?.description}</p>
             </div>
             {/* <p>{course.description}</p> */}
           </div>

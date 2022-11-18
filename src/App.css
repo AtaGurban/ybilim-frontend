@@ -359,3 +359,458 @@ h1 {
 .table-node{
   min-width: 40px;
 }
+
+.china {
+  float:left;
+  width: 100%;
+  height: 100vh;
+}
+.china_logo_img {
+  position: absolute;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index: -1;
+}
+.china_logo_img img {
+  object-fit: cover;
+  width:100%;
+  height: 100%;
+}
+.china_logo_text {
+  float:left;
+  width:100%;
+  padding:20px 50px;
+
+}
+.img_block_logo {
+  float:left;
+  width:300px;
+} 
+.img_block_logo img {
+  object-fit: cover;
+  width:100%;
+  height:100%;
+}
+.china_logo_text a {
+  text-decoration:none;
+  color:white;
+  font-size:50px;
+}
+.china_vacation_txt {
+  float:left;
+  width:50%;
+  margin-top:80px;
+  padding:50px;
+  color:red;
+}
+.china_h1 {
+  float:left;
+  width:100%;
+}
+.china_h1 h1 {
+  color:rgb(244, 241, 241);
+  font-weight: 700;
+  text-shadow: 6px 0px 5px #504e4e;
+  float:left;
+  padding:20px 0;
+  font-size:40px;
+}
+.china_p {
+  float:left;
+  width:100%;
+}
+.china_p p {
+  float:left;
+  font-size:30px;
+  padding:0p;
+  margin:0;
+  color:white;
+  text-shadow: 6px 0px 5px #504e4e;
+}
+.china_button {
+  float:left;
+  width:100%;
+  padding:30px 50px;
+}
+.china_button button {
+  float:left;
+  background-color:#E0120E;
+  outline:none;
+  color:rgb(255, 248, 248);
+  border-radius: 40px;
+  font-size:19px;
+  padding:16px 20px;
+  border:0;
+  font-family: 'PT Serif', sans-serif;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:
+  12.4px 10.3px 122.3px rgba(0, 0, 0, -0.009),
+  27.5px 22.7px 121.6px rgba(0, 0, 0, -0.012),
+  49.3px 40.8px 118px rgba(0, 0, 0, 0.011),
+  58px 48px 138px rgba(0, 0, 0, 0.09);
+  transition:0.4s;
+}
+.china_button button:hover {
+  color:rgb(252, 252, 252);
+  background-color:rgb(75, 73, 73);
+  opacity: 0.9;
+}
+.city_name {
+  float:left;
+  width:100%;
+  padding:30px;
+}
+.city_h1 {
+  float:left;
+  /* width:100%; */
+}
+.city_h1 h1 {
+  float:left;
+  font-size:25px;
+  padding:16px 30px;
+  background-color:#E0120E;
+  border:0;
+  border-radius: 40px;
+  color:rgb(255, 255, 255);
+}
+.flip_book {
+  float:left;
+  width:100%;
+  margin:0;
+  padding:0px 0 ;
+}
+.flip_book_element {
+  float:left;
+  width:200px;
+  padding:10px;
+  margin:1% 2%;
+  color:rgb(0, 0, 0);
+  background-color:none;
+}
+.flip_book_element_2 {
+  float:left;
+  width:100%;
+  padding:0px;
+  margin:1% 0%;
+  color:rgb(0, 0, 0);
+  background-color:none;
+}
+.flip_book_img {
+  float:left;
+  width: 100%;
+  padding:0px;
+  height:174px;
+}
+.flip_book_img img {
+  object-fit: cover;
+  border-radius:50%; 
+  width:100%;
+  height:100%;
+}
+.flip_book_img_2 {
+  float:left;
+  width: 100%;
+  height: 180px;
+}
+.flip_book_img_2 img {
+  object-fit: cover;
+  border-radius:0%;
+  width:100%;
+  height:100%;
+}
+.flip_book_design {
+  float:left;
+  width: 100%;
+  color:black;
+  padding:20px 0 0 0 ;
+  text-align: center;
+}
+.flip_book_design_2 {
+  float:left;
+  width: 100%;
+  padding:20px 0 0 0 ;
+  text-align: center;
+}
+.flip_book_design a {
+  font-size:25px;
+  color:rgb(255, 255, 255);
+}
+.accordion {
+  float:left;
+  width:100%;
+  /*background-color: rgba(0,0,0,0.1);*/
+}
+.accordion_mini {
+  float:left;
+  text-align: center;
+  width:100%;
+  padding:4px 30px;
+  background-color: #49af75;
+}
+.accordion_mini h1 {
+  color:rgb(255, 255, 255);
+}
+.accordion_mini2 {
+  float:left;
+  width:23%;
+  margin:0 1%;
+  padding:40px 0;
+  background-color: rgb(248, 248, 248);
+  display: block;
+  background-color:inherit;
+  border-radius: 7px;
+  text-align: center;
+  transition: 0.2s;
+}
+.accordion_mini2 a {
+  text-decoration: none;
+  color:rgb(8, 8, 8);
+  font-size:19px;
+}
+.display {
+  display: block;
+}
+.footer_button {
+  display: flex;
+  justify-content: center;
+  transition: 300ms;
+  align-items: center;
+}
+.footer_button:hover {
+  background: rgb(255, 15, 15);
+  transform: rotate(.7deg)scale(.95);
+  box-shadow: 0px 0px  20px rgba(255, 0, 0, 0.8);
+}
+.footer_button * {
+  color: white;
+}
+.footer_button .button_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.footer_button .button_text {
+  font-size: 30px;
+}
+.footer_button .button_text .button_text_p {
+  opacity: .7;
+  margin-top: 2px;
+  font-weight: 500;
+  font-size: 20px;
+}
+footer {
+  float:left;
+  width: 100%;
+  margin-top: 30px;
+  background: linear-gradient(to right bottom, #000,#111);
+}
+footer .footer_container {
+  width: 100%;
+  height: 100%;
+  display: flex;align-items: center;flex-direction: column;
+  padding: 40px 10px;
+}
+footer .footer_container img {
+  width: 230px;
+  margin: 0px 0px 10px 0px;
+}
+footer p {
+  color: white;
+  margin: 10px 0px;
+  width: 80%;
+  font-size: 15px;
+  opacity: .9;
+  font-weight: 400;
+}
+@media screen and (max-width:1136px) {
+  .china_vacation_txt {
+      float:left;
+      width:60%;
+      margin-top:40px;
+      padding:40px;
+      color:red;
+  }
+}
+@media screen and (max-width:1024px) {
+  .china_vacation_txt {
+      float:left;
+      width:60%;
+      margin-top:20px;
+      padding:0 40px;
+      color:red;
+  }
+  .china_h1 h1 {
+      color:rgb(244, 241, 241);
+      font-weight: 700;
+      text-shadow: 6px 0px 5px #504e4e;
+      float:left;
+      padding:19px 0;
+      font-size:27px;
+  }
+  .china_p p {
+      float:left;
+      font-size:24px;
+      padding:0p;
+      margin:0;
+      color:white;
+      text-shadow: 6px 0px 5px #504e4e;
+  }
+}
+@media screen and (max-width:976px) {
+  .china_vacation_txt {
+      float:left;
+      width:60%;
+      margin-top:40px;
+      padding:40px;
+      color:red;
+  }
+  .city_h1 h1 {
+      font-size: 15px;
+      padding:14px 28px;
+  }
+  .china_h1 h1 {
+      color:rgb(244, 241, 241);
+      font-weight: 700;
+      text-shadow: 6px 0px 5px #504e4e;
+      float:left;
+      padding:20px 0;
+      font-size:30px;
+  }
+  .china_p p {
+      float:left;
+      font-size:25px;
+      padding:0p;
+      margin:0;
+      color:white;
+      text-shadow: 6px 0px 5px #504e4e;
+  }
+  .china_button {
+      float:left;
+      width:100%;
+      padding:30px 20px;
+  }
+  .china_button button {
+      float:left;
+      background-color:#E0120E;
+      outline:none;
+      color:rgb(255, 248, 248);
+      border-radius: 40px;
+      font-size:15px;
+      padding:14px 16px;
+      border:0;
+      font-family: 'PT Serif', sans-serif;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:
+      12.4px 10.3px 122.3px rgba(0, 0, 0, -0.009),
+      27.5px 22.7px 121.6px rgba(0, 0, 0, -0.012),
+      49.3px 40.8px 118px rgba(0, 0, 0, 0.011),
+      58px 48px 138px rgba(0, 0, 0, 0.09);
+      transition:0.4s;
+  }
+}
+@media screen and (max-width:876px) {
+  .accordion_mini2 {
+      float:left;
+      width:48%;
+      margin:0 1%;
+      padding:40px 0;
+      background-color: rgb(248, 248, 248);
+      display: block;
+      background-color:inherit;
+      border-radius: 7px;
+      text-align: center;
+      transition: 0.2s;
+  }
+  .flip_book_design_2 {
+      height:70px;
+  }
+}
+@media screen and (max-width:642px) {
+  .china_vacation_txt {
+      width:90%;
+  }
+  .china_h1 h1 {
+      color:rgb(244, 241, 241);
+      font-weight: 700;
+      text-shadow: 6px 0px 5px #504e4e;
+      float:left;
+      padding:15px 0;
+      font-size:30px;
+  }
+  .china_p p {
+      float:left;
+      font-size:25px;
+      padding:0p;
+      margin:0;
+      color:white;
+      text-shadow: 6px 0px 5px #504e4e;
+  }
+}
+@media screen and (max-width:538px) {
+  .accordion_mini2 {
+      float:left;
+      width:100%;
+      margin:0 0%;
+      padding:40px 0;
+      background-color: rgb(248, 248, 248);
+      display: block;
+      background-color:inherit;
+      border-radius: 7px;
+      text-align: center;
+      transition: 0.2s;
+  }
+  .flip_book_design_2 {
+      height:70px;
+  }
+}
+@media screen and (max-width:394px) {
+  .china_vacation_txt {
+      width:100%;
+      padding:0 5px;
+  }
+}
+@media screen and (max-width:380px) {
+  .china_logo_text {
+      padding: 12px 39px;
+  }
+}
+@media screen and (max-width:344px) {
+  .china_logo_text {
+      margin:0;
+      padding: 12px 5px;
+  }
+  .img_block_logo {
+      width:200px;
+  }
+}
+@media screen and (max-width:280px) {
+  .china_logo_text {
+      margin:0;
+      padding: 12px 5px;
+  }
+  .accordion_mini h1 {
+      color:rgb(255, 255, 255);
+      font-size:28px;
+  }
+  .china_h1 h1 {
+      color:rgb(244, 241, 241);
+      font-weight: 700;
+      text-shadow: 6px 0px 5px #504e4e;
+      float:left;
+      padding:15px 0;
+      font-size:27px;
+  }
+  .china_p p {
+      float:left;
+      font-size:23px;
+      padding:0p;
+      margin:0;
+      color:white;
+      text-shadow: 6px 0px 5px #504e4e;
+  }
+}

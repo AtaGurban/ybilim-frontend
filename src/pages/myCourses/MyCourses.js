@@ -14,6 +14,7 @@ const MyCourses = () => {
       await getMyCourse(user.user.id).then((data) => setCourses(data));
     })();
   }, []);
+  console.log(courses);
   return (
     <div className="h-100">
       <div className="wrapper-all">
@@ -25,12 +26,13 @@ const MyCourses = () => {
           <hr />
           <div className="boxes-card">
             {courses.map((i) => (
+              (i.courseId) ? 
               <CourseCard
                 key={i.id}
-                id={i.id}
+                id={i.courseId}
                 img={i?.course?.img}
                 title={i?.course?.name}
-              />
+              /> : null
             ))}
           </div>
         </div>
