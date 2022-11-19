@@ -2,6 +2,7 @@ import Stream from "./components/Stream";
 import Upload from "./components/Upload";
 import Admin from "./pages/admin/Admin";
 import AdminCity from "./pages/adminCity/AdminCity";
+import AdminCollage from "./pages/adminCollage/AdminCollage";
 import AdminCourse from "./pages/adminCourse/AdminCourse";
 import AdminCourseWideo from "./pages/adminCourseWideo/adminCourseWideo";
 import AdminUsers from "./pages/adminUsers/AdminUsers";
@@ -11,7 +12,7 @@ import EducationPage from "./pages/educationPage/EducationPage";
 import MainPage from "./pages/mainPage/MainPage";
 import MyCourses from "./pages/myCourses/MyCourses";
 
-import { UPLOAD_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE, EDUCATION_ROUTE, ADMIN_EDUCATION_ROUTE } from "./utils/pathConsts";
+import { UPLOAD_ROUTE,ADMIN_EDUCATION_COLLAGE_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE, EDUCATION_ROUTE, ADMIN_EDUCATION_ROUTE } from "./utils/pathConsts";
 
 
 // export const authRoutes = [
@@ -105,6 +106,10 @@ export const adminRoutes = [
     {
         path: ADMIN_EDUCATION_ROUTE,
         Element: <AdminCity/>
+    },
+    {
+        path: ADMIN_EDUCATION_COLLAGE_ROUTE,
+        Element: <AdminCollage/>
     },
 ]
 

@@ -34,7 +34,7 @@ const ListCourses = () => {
             <div className="col-sm-6 col-md-4 col-12" key={i.id} >
               <div key={i.id} className="box ">
                 <div className="box_image skeleton">
-                  <img src={`http://localhost:5000/api/static/${i.img}`} alt={`${i.img}`} />
+                  <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`} alt={`${i.img}`} />
                 </div>
                 <div className="box_content">
                   {/* <div className="box_avatar skeleton">

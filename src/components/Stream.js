@@ -39,7 +39,7 @@ const Stream = () => {
               controls
               controlsList="nodownload"
               autoPlay={true}
-              src={`http://localhost:5000/api/video?id=${params.id}&q=${quality}`}
+              src={`${process.env.REACT_APP_API_URL}/api/video?id=${params.id}&q=${quality}`}
             ></video>
             <div className='mt-4 ms-auto d-flex'>
               <button disabled={quality === 360} onClick={()=>setQuality(360)} className='btn btn-success'>360p</button>
@@ -50,7 +50,7 @@ const Stream = () => {
                 <Link to={`/stream/${nextVideoId}`}>Indiki</Link>
             </div>
             <div className="kesha mb-5">
-                <h5><img src={`http://localhost:5000/api/static/${teacher?.avatar}`} alt=""/>{teacher?.first_name}</h5>
+                <h5><img src={`${process.env.REACT_APP_API_URL}/api/static/${teacher?.avatar}`} alt=""/>{teacher?.first_name}</h5>
                 <p>{teacher?.description}</p>
             </div>
             {/* <p>{course.description}</p> */}

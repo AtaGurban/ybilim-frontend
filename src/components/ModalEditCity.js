@@ -1,8 +1,8 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { Button, Form, Modal, Dropdown } from "react-bootstrap";
-import { createCity } from "../http/educaionApi";
+import { createCity, updateCity } from "../http/educaionApi";
 
-const ModalAddCity = ({ show, onHide }) => {
+const ModalAddCity = ({ show, onHide, city }) => {
   const [cityName, setCityName] = useState("");
   const [dropPrice, setDropPrice] = useState("");
   const [img, setImg] = useState(null);
@@ -13,12 +13,13 @@ const ModalAddCity = ({ show, onHide }) => {
     setImg(e.target.files[0]);
   };
 
-  const addCity = async () => {
+  const editCity = async () => {
     if (cityName === "" || dropPrice === "" || !img) {
       return alert("Maglumatlar doly dal");
     }
     const formData = new FormData();
     formData.append("name", cityName);
+    formData.append("id", city.id);
     formData.append("imgFile", img);
     formData.append("price", dropPrice);
     const options = {
@@ -30,7 +31,7 @@ const ModalAddCity = ({ show, onHide }) => {
       },
     };
     try {
-      await createCity(formData, options).then((data) => {
+      await updateCity(formData, options).then((data) => {
         onHide();
         window.location.reload();
       });
@@ -40,12 +41,18 @@ const ModalAddCity = ({ show, onHide }) => {
     }
   };
 
+  useEffect(()=>{
+    setCityName(city.name)
+    setDropPrice(city.price)
+  }, [city])
+
+
   return (
     <div>
       <Modal show={show} onHide={onHide} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Täze şäher goşmak
+            {city.name} şäheri üýtgetmek
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -61,6 +68,9 @@ const ModalAddCity = ({ show, onHide }) => {
           </Form>
           <hr />
           <span className="mt-3 c-bold">Şäheriň suraty</span>
+          <div className="my-3">
+          <img height='250px' src={`${process.env.REACT_APP_API_URL}/api/static/${city.img}`} alt=""/>
+          </div>
           <Form.Control className="my-3" type="file" onChange={selectFileOne} />
           <hr />
           <Dropdown className="mb-3">
@@ -95,8 +105,8 @@ const ModalAddCity = ({ show, onHide }) => {
           <Button variant={"outline-danger"} onClick={onHide}>
             Ýap
           </Button>
-          <Button variant={"outline-success"} onClick={addCity}>
-            Goş
+          <Button variant={"outline-success"} onClick={editCity}>
+            Üýtget
           </Button>
         </Modal.Footer>
       </Modal>
