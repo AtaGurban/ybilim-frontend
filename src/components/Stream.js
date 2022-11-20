@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getOneCourseAndVideo } from '../http/courseApi';
 import Navbar from './Navbar';
-import { Spinner } from 'react-bootstrap';
-// import { getOneUsers } from '../http/userAPI';
 import Footer from './Footer/Footer';
+import {MoonLoader} from 'react-spinners'
 
 
 const Stream = () => {
@@ -25,7 +24,7 @@ const Stream = () => {
     if(loading){
       return (
         <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
-        <Spinner animation={'grow'}/>
+        <MoonLoader color="#000000" />
       </div>)
     }
     return (

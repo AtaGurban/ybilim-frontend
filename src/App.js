@@ -6,9 +6,7 @@ import { observer } from 'mobx-react-lite'
 import { useContext, useEffect, useState } from "react";
 import { Context } from ".";
 import { check } from "./http/userAPI";
-import { Spinner } from "react-bootstrap";
-import {useNavigate} from 'react-router-dom'
-import Footer from "./components/Footer/Footer";
+import {MoonLoader} from 'react-spinners'
 
 const App = observer(() => {
   const { user } = useContext(Context) 
@@ -33,7 +31,7 @@ const App = observer(() => {
   if(loading){
     return (
       <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
-      <Spinner animation={'grow'}/>
+      <MoonLoader color="#000000" />
     </div>)
   }
   return (

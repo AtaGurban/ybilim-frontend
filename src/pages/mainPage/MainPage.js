@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./MainPage.module.css";
 import logo from "./logo (2).png";
 import one from "./1.png";

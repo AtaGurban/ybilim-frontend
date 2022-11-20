@@ -6,6 +6,7 @@ import { Context } from "..";
 const ModalEditUser = ({ show, onHide, userId, userName, role, isTeacherTwo }) => {
   const [isTeacher, setIsTeacher] = useState(isTeacherTwo);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isSuperAdmin, setSuperIsAdmin] = useState(false);
   const { user } = useContext(Context) 
   const [description, setDescription] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +24,7 @@ const ModalEditUser = ({ show, onHide, userId, userName, role, isTeacherTwo }) =
     formData.append('img', img)
     formData.append("userId", userId);
     formData.append("role", isAdmin);
+    formData.append("superAdmin", isSuperAdmin);
 
 
     update(formData).then((data) => {
@@ -36,7 +38,8 @@ const ModalEditUser = ({ show, onHide, userId, userName, role, isTeacherTwo }) =
     });
   };
   useEffect(()=>{
-    setIsAdmin(role !== 'USER')
+    setIsAdmin(role === 'ADMIN')
+    setSuperIsAdmin(role === 'SUPERADMIN')
   }, [role])
 
   useEffect(()=>{
@@ -57,7 +60,7 @@ console.log(isAdmin);
           <Form>
             <span className="mt-3 c-bold">Mugallym barada</span>
             <Form.Text
-              as="textarea"
+              as="textarea" 
               className="my-3"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -87,7 +90,7 @@ console.log(isAdmin);
               type="switch"
               id="custom-switch"
               label="Admin et"
-              checked={isAdmin}
+              checked={isAdmin || isSuperAdmin}
               className={(user.user.role === 'SUPERADMIN') ? 'd-block' : 'd-none'}
               onChange={() => setIsAdmin(!isAdmin)}
             />

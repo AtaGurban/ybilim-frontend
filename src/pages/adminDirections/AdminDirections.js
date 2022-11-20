@@ -10,24 +10,24 @@ import {  getAllCollages, removeCollage  } from "../../http/educaionApi";
 import ModalAddCollage from "../../components/ModalAddCollage";
 import ModalEditCollage from "../../components/ModalEditCollage";
 
-const AdminCollage = observer(() => {
+const AdminDirection = observer(() => {
   const params = useParams()
-  const [collages, setCollages] = useState([])
+  const [directions, setDirections] = useState([])
   const { user } = useContext(Context) 
-  const [currentCollage, setCurrentCollage] = useState('')
-  const [modalAddCollageVisible, setModalAddCollageVisible] = useState(false)
-  const [modalEditCollageVisible, setModalEditCollageVisible] = useState(false)
+  const [currentDirection, setCurrentDirection] = useState('')
+  const [modalAddDirectionVisible, setModalAddDirectionVisible] = useState(false)
+  const [modalEditDirectionVisible, setModalEditDirectionVisible] = useState(false)
   const navigate = useNavigate()
   const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
 
-  const removeCollagefunc = async(id)=>{
+  const removeDirectionfunc = async(id)=>{
       if (user.user.role === 'SUPERADMIN'){
         await removeCollage(id).then((data)=> window.location.reload())
       }
   }
   useEffect(()=>{
       (async function(){
-          await getAllCollages(params.id).then((data) => setCollages(data));
+          await getAllCollages(params.id).then((data) => setDirections(data));
       })()
       if (user.user.role !== 'SUPERADMIN'){
         setRemoveBtn('d-none')
@@ -35,9 +35,9 @@ const AdminCollage = observer(() => {
   }, [] )
 
 
-  const editCollage = (collage)=>{
-    setCurrentCollage(collage)
-    setModalEditCollageVisible(true)
+  const editDirection = (collage)=>{
+    setCurrentDirection(collage)
+    setModalEditDirectionVisible(true)
   }
   
 
@@ -52,10 +52,10 @@ const AdminCollage = observer(() => {
       <Navbar />
       <div className="mx-5 mt-3">
         <div className="add-new my-3 text-end">
-            <button  onClick={() => setModalAddCollageVisible(true)} className="btn btn-warning">Täzesini goş</button>
+            <button  onClick={() => setModalAddDirectionVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
-        <ModalEditCollage collage={currentCollage} cityId = {params.id} show={modalEditCollageVisible} onHide={() => setModalEditCollageVisible(false)}/>
-        <ModalAddCollage cityId = {params.id} show={modalAddCollageVisible} onHide={() => setModalAddCollageVisible(false)} />
+        <ModalEditCollage collage={currentDirection} cityId = {params.id} show={modalEditDirectionVisible} onHide={() => setModalEditDirectionVisible(false)}/>
+        <ModalAddCollage cityId = {params.id} show={modalAddDirectionVisible} onHide={() => setModalAddDirectionVisible(false)} />
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
@@ -89,7 +89,7 @@ const AdminCollage = observer(() => {
                   </tr>
                 </thead>
                 <tbody>
-                  {collages.map((i) => (
+                  {directions.map((i) => (
                     <tr key={i.id}>
                       <td className="table-node p-1">{i.id}</td>
                       <td className="table-node p-1 w-50">{i.name}</td> 
@@ -104,14 +104,14 @@ const AdminCollage = observer(() => {
                           <i className="fas fa-university"></i>
                         </button>
                         <button
-                          onClick={() => editCollage(i)}
+                          onClick={() => editDirection(i)}
                           className="btn btn-primary mx-1"
                           title="Üýtgetmek"
                         >
                           <i className="fas fa-cogs"></i>
                         </button>
                         <button
-                          onClick={() => removeCollagefunc(i.id)}
+                          onClick={() => removeDirectionfunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className={removeBtn}
                           title="Pozmak"
@@ -132,4 +132,4 @@ const AdminCollage = observer(() => {
   );
 });
 
-export default AdminCollage;
+export default AdminDirection;
