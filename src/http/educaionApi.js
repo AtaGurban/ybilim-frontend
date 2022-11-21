@@ -9,6 +9,11 @@ export const getAllCollages = async (id)=>{
     return data
 }
 
+export const getAllDirections = async (id)=>{
+    const {data} = await $host.get(`api/education/direction?id=${id}`)
+    return data
+}
+
 export const createCity = async (item, options)=>{
     const {data} = await $host.post(`api/education/city`, item, options)
     return data
@@ -16,6 +21,11 @@ export const createCity = async (item, options)=>{
 
 export const createCollage = async (item, options)=>{
     const {data} = await $host.post(`api/education/collage`, item, options)
+    return data
+}
+
+export const createDirection = async (item, options)=>{
+    const {data} = await $host.post(`api/education/direction`, item, options)
     return data
 }
 
@@ -29,6 +39,11 @@ export const removeCollage = async (id)=>{
     return data
 }
 
+export const removeDirection = async (id)=>{
+    const {data} = await $host.delete(`api/education/direction?id=${id}`)
+    return data
+}
+
 export const updateCollage = async (item, options)=>{
     const {data} = await $host.put(`api/education/collage`, item, options)
     return data
@@ -36,5 +51,10 @@ export const updateCollage = async (item, options)=>{
 
 export const updateCity = async (item, options)=>{
     const {data} = await $host.put(`api/education/city`, item, options)
+    return data
+}
+
+export const updateDirection = async (item, options)=>{
+    const {data} = await $host.put(`api/education/direction`, item, options)
     return data
 }

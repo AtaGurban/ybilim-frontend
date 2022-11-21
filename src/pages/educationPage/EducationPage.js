@@ -1,8 +1,42 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import book from './book.jpg'
 import logo from '../mainPage/yone.png'
+import keshaLogo from './kesha_logo.png'
+import {MoonLoader} from 'react-spinners'
+import { getAllCityes } from "../../http/educaionApi";
+import { Link } from "react-router-dom";
 
 const EducationPage = () => {
+  const [allCityes, setAllCityes] = useState([])
+  const [cheapCityes, setCheapCityes] = useState([])
+  const [mediumCityes, setMediumCityes] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [expensiveCityes, setExpensiveCityes] = useState([])
+  useEffect(()=>{
+    (async function () {
+      await getAllCityes().then((data) => setAllCityes(data)).finally(() => setLoading(false));
+      // await getOneUsers(course.course.teacher).then((data) => setTeacher(data))
+    })();
+  }, [])
+
+  useEffect(()=>{
+    setCheapCityes(allCityes.filter((i)=>{
+      return i.price === '300$ - 500$'
+    })) 
+    setMediumCityes(allCityes.filter((i)=>{
+      return i.price === '750$ - 1000$'
+    })) 
+    setExpensiveCityes(allCityes.filter((i)=>{
+      return i.price === '1000$ - 1500$'
+    })) 
+  }, [allCityes])
+  console.log(mediumCityes);
+  if(loading){
+    return (
+      <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
+      <MoonLoader color="#000000" />
+    </div>)
+  }
   return (
     <div>
       <div className="china">
@@ -46,17 +80,22 @@ const EducationPage = () => {
             <div className="accordion_mini">
               <h1>500$ - 1000$</h1>
             </div>
-
-            <div className="accordion_mini2">
-              <div className="flip_book_element">
-                <div className="flip_book_img">
-                  <img src="img/shanghai.png" />
-                </div>
-                <div className="flip_book_design">
-                  <a href="shanghai.html">Shanghai</a>
-                </div>
+            {
+              cheapCityes.map((i)=>
+                <div key={i.id} className="accordion_mini2">
+                  <div className="flip_book_element">
+                    <div className="flip_book_img">
+                      <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
+                    </div>
+                    <div className="flip_book_design">
+                      <Link>{i.name}</Link>
+                      {/* <a href="shanghai.html">Shanghai</a> */}
+                    </div>
+                  </div>
               </div>
-            </div>
+              )
+            }
+
           </div>
         </div>
         <div className="flip_book">
@@ -65,16 +104,21 @@ const EducationPage = () => {
               <h1>350$ - 700$</h1>
             </div>
 
-            <div className="accordion_mini2">
-              <div className="flip_book_element">
-                <div className="flip_book_img">
-                  <img src="img/wuhan.jpg" />
-                </div>
-                <div className="flip_book_design">
-                  <a href="wuhan.html">Wuhan</a>
-                </div>
+            {
+              mediumCityes.map((i)=>
+                <div key={i.id} className="accordion_mini2">
+                  <div className="flip_book_element">
+                    <div className="flip_book_img">
+                      <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
+                    </div>
+                    <div className="flip_book_design">
+                      <Link>{i.name}</Link>
+                      {/* <a href="shanghai.html">Shanghai</a> */}
+                    </div>
+                  </div>
               </div>
-            </div>
+              )
+            }
           </div>
         </div>
 
@@ -84,22 +128,27 @@ const EducationPage = () => {
               <h1>200$ - 500$</h1>
             </div>
 
-            <div className="accordion_mini2">
-              <div className="flip_book_element">
-                <div className="flip_book_img">
-                  <img src="img/nanjing.jpg" />
-                </div>
-                <div className="flip_book_design">
-                  <a href="nanjing.html">Nanjing</a>
-                </div>
+            {
+              expensiveCityes.map((i)=>
+                <div key={i.id} className="accordion_mini2">
+                  <div className="flip_book_element">
+                    <div className="flip_book_img">
+                      <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
+                    </div>
+                    <div className="flip_book_design">
+                      <Link>{i.name}</Link>
+                      {/* <a href="shanghai.html">Shanghai</a> */}
+                    </div>
+                  </div>
               </div>
-            </div>
+              )
+            }
           </div>
         </div>
       </div>
       <footer>
         <div className="footer_container">
-          <img src="img/kesha_logo.png" alt="" />
+          <img src={keshaLogo} alt="" />
           <p>
             Üstünlik zähmetiň, bilimiň we çydamlylygyñ netijesidigine ynanýarys.
             Berlen mysallar adaty bolmak üçin niýetlenen däldir we netijeler hiç

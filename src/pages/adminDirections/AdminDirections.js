@@ -6,9 +6,9 @@ import styles from "./admincourse.module.css";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
-import {  getAllCollages, removeCollage  } from "../../http/educaionApi";
-import ModalAddCollage from "../../components/ModalAddCollage";
-import ModalEditCollage from "../../components/ModalEditCollage";
+import {  getAllDirections, removeDirection  } from "../../http/educaionApi";
+import ModalAddDirection from "../../components/ModalAddDirection";
+import ModalEditDirection from "../../components/ModalEditDirection";
 
 const AdminDirection = observer(() => {
   const params = useParams()
@@ -22,17 +22,17 @@ const AdminDirection = observer(() => {
 
   const removeDirectionfunc = async(id)=>{
       if (user.user.role === 'SUPERADMIN'){
-        await removeCollage(id).then((data)=> window.location.reload())
+        await removeDirection(id).then((data)=> window.location.reload())
       }
   }
   useEffect(()=>{
       (async function(){
-          await getAllCollages(params.id).then((data) => setDirections(data));
+          await getAllDirections(params.id).then((data) => setDirections(data));
       })()
       if (user.user.role !== 'SUPERADMIN'){
         setRemoveBtn('d-none')
       }
-  }, [] )
+  }, [params.id] )
 
 
   const editDirection = (collage)=>{
@@ -54,8 +54,8 @@ const AdminDirection = observer(() => {
         <div className="add-new my-3 text-end">
             <button  onClick={() => setModalAddDirectionVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
-        <ModalEditCollage collage={currentDirection} cityId = {params.id} show={modalEditDirectionVisible} onHide={() => setModalEditDirectionVisible(false)}/>
-        <ModalAddCollage cityId = {params.id} show={modalAddDirectionVisible} onHide={() => setModalAddDirectionVisible(false)} />
+        <ModalEditDirection direction = {currentDirection} collageId = {params.id} show={modalEditDirectionVisible} onHide={() => setModalEditDirectionVisible(false)}/>
+        <ModalAddDirection collageId = {params.id} show={modalAddDirectionVisible} onHide={() => setModalAddDirectionVisible(false)} />
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}

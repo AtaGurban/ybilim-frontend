@@ -32,7 +32,7 @@ const AdminCollage = observer(() => {
       if (user.user.role !== 'SUPERADMIN'){
         setRemoveBtn('d-none')
       }
-  }, [] )
+  }, [params.id] )
 
 
   const editCollage = (collage)=>{

@@ -14,7 +14,7 @@ const ModalAddCity = ({ show, onHide, city }) => {
   };
 
   const editCity = async () => {
-    if (cityName === "" || dropPrice === "" || !img) {
+    if (cityName === "" || dropPrice === "") {
       return alert("Maglumatlar doly dal");
     }
     const formData = new FormData();
@@ -33,7 +33,7 @@ const ModalAddCity = ({ show, onHide, city }) => {
     try {
       await updateCity(formData, options).then((data) => {
         onHide();
-        window.location.reload();
+        window.location.reload(); 
       });
     } catch (error) {
       alert(error.response.data.message);

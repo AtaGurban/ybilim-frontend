@@ -12,9 +12,8 @@ const ModalEditCollage = ({ show, onHide, cityId, collage }) => {
   const selectFileOne = (e) => {
     setImg(e.target.files[0]);
   };
-  console.log(collage);
   const addCollage = async () => {
-    if (collageName === "" || dropPrice === "" || !img) {
+    if (collageName === "" || dropPrice === "") {
       return alert("Maglumatlar doly dal");
     }
     const formData = new FormData();
@@ -42,17 +41,17 @@ const ModalEditCollage = ({ show, onHide, cityId, collage }) => {
     }
   };
 
-  useEffect(()=>{
-    setCollageName(collage.name)
-    setDropPrice(collage.price)
-  }, [collage])
+  useEffect(() => {
+    setCollageName(collage.name);
+    setDropPrice(collage.price);
+  }, [collage]);
 
   return (
     <div>
       <Modal show={show} onHide={onHide} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Täze okuw jaýyny goşmak
+            {collage.name} okuw jaýyny üýtgetmek
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -69,10 +68,10 @@ const ModalEditCollage = ({ show, onHide, cityId, collage }) => {
           <hr />
           <div className="my-3">
             <img
-                    height='250px'
-                    src={`${process.env.REACT_APP_API_URL}/api/static/${collage.img}`}
-                    alt=""
-                />
+              height="250px"
+              src={`${process.env.REACT_APP_API_URL}/api/static/${collage.img}`}
+              alt=""
+            />
           </div>
           <span className="mt-3 c-bold">Okuw jaýynyň suraty</span>
           <Form.Control className="my-3" type="file" onChange={selectFileOne} />
@@ -83,10 +82,7 @@ const ModalEditCollage = ({ show, onHide, cityId, collage }) => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {prices.map((price, index) => (
-                <Dropdown.Item
-                  onClick={() => setDropPrice(price)}
-                  key={index}
-                >
+                <Dropdown.Item onClick={() => setDropPrice(price)} key={index}>
                   {price}
                 </Dropdown.Item>
               ))}
