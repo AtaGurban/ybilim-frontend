@@ -900,7 +900,7 @@ section {
 }
 .section_1 .box {
   width: 30%;
-  min-width: 300px;
+  min-width: 200px;
   max-width: 350px;
   margin: 35px;
   display: flex;

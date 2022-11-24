@@ -52,7 +52,7 @@ const Auth = () => {
           </label>
           <input
             onChange={(e) => setPassword(e.target.value)}
-            type="text"
+            type="password"
             placeholder="Açarsöz ýazyň"
             name="password"
             id="password"

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "./MainPage.module.css";
 import logo from "./logo (2).png";
 import one from "./1.png";
-import global from "./global2.jpg";
+import global from "./global2.png";
 import docs from "./docs1.png";
 import tick from "./tick.png";
 import yone from "./yone.png";
@@ -216,8 +216,6 @@ const MainPage = observer(() => {
           <span className={`${styles["w3-xxlarge"]}`}>
             Gysga wagtda Ýokary netije
           </span>
-          <br />
-          Kesha Rejepow
         </div>
         <div className={`${styles["w3-quarter"]}`}>
           <div className={`${styles["img_1"]}`}>
@@ -226,8 +224,6 @@ const MainPage = observer(() => {
           <span className={`${styles["w3-xxlarge"]}`}>
             Ýokary hilli we peýdaly kurslar
           </span>
-          <br />
-          Kesha Rejepow
         </div>
         <div className={`${styles["w3-quarter"]}`}>
           <div className={`${styles["img_1"]}`}>
@@ -236,8 +232,6 @@ const MainPage = observer(() => {
           <span className={`${styles["w3-xxlarge"]}`}>
             Biznese başlamagyň ilkinji ädimi
           </span>
-          <br />
-          Kesha Rejepow
         </div>
         <div className={`${styles["w3-quarter"]}`}>
           <div className={`${styles["img_1"]}`}>
@@ -247,8 +241,6 @@ const MainPage = observer(() => {
             Onlaýn biznese <br />
             başlamak
           </span>
-          <br />
-          Kesha Rejepow
         </div>
       </div>
 
@@ -313,7 +305,7 @@ const MainPage = observer(() => {
             </label>
             <input
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
+              type="password"
               placeholder="Açarsöz ýazyň"
               name="password"
               id="password"

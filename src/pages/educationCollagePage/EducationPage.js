@@ -3,11 +3,12 @@ import book from './book.jpg'
 import logo from '../mainPage/yone.png'
 import keshaLogo from './kesha_logo.png'
 import {MoonLoader} from 'react-spinners'
-import { getAllCityes } from "../../http/educaionApi";
-import { Link } from "react-router-dom";
-import { EDUCATION_COLLAGE_ROUTE } from "../../utils/pathConsts";
+import { getAllCollages } from "../../http/educaionApi";
+import { Link, useParams } from "react-router-dom";
+import {  EDUCATION_DIRECTION_ROUTE } from "../../utils/pathConsts";
 
-const EducationPage = () => {
+const EducationCollagePage = () => {
+  const params = useParams()
   const [allCityes, setAllCityes] = useState([])
   const [cheapCityes, setCheapCityes] = useState([])
   const [mediumCityes, setMediumCityes] = useState([])
@@ -15,7 +16,7 @@ const EducationPage = () => {
   const [expensiveCityes, setExpensiveCityes] = useState([])
   useEffect(()=>{
     (async function () {
-      await getAllCityes().then((data) => setAllCityes(data)).finally(() => setLoading(false));
+      await getAllCollages(params.id).then((data) => setAllCityes(data)).finally(() => setLoading(false));
     })();
   }, [])
 
@@ -40,7 +41,7 @@ const EducationPage = () => {
     <div>
       <div className="china">
         <div className="china_logo_img">
-          <img src={book} />
+          <img src={book}/>
         </div>
 
         <div className="china_logo_text">
@@ -71,7 +72,7 @@ const EducationPage = () => {
 
       <div className="city_name">
         <div className="city_h1">
-          <h1>Şäherler</h1>
+          <h1>Okuwlar</h1>
         </div>
 
         <div className="flip_book">
@@ -87,7 +88,8 @@ const EducationPage = () => {
                       <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
                     </div>
                     <div className="flip_book_design">
-                      <Link to={`${EDUCATION_COLLAGE_ROUTE}/${i.id}`}>{i.name}</Link>
+                      <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>{i.name}</Link>
+                      {/* <a href="shanghai.html">Shanghai</a> */}
                     </div>
                   </div>
               </div>
@@ -110,7 +112,8 @@ const EducationPage = () => {
                       <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
                     </div>
                     <div className="flip_book_design">
-                      <Link to={`${EDUCATION_COLLAGE_ROUTE}/${i.id}`}>{i.name}</Link>
+                      <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>{i.name}</Link>
+                      {/* <a href="shanghai.html">Shanghai</a> */}
                     </div>
                   </div>
               </div>
@@ -133,7 +136,7 @@ const EducationPage = () => {
                       <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
                     </div>
                     <div className="flip_book_design">
-                      <Link to={`${EDUCATION_COLLAGE_ROUTE}/${i.id}`}>{i.name}</Link>
+                      <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>{i.name}</Link>
                       {/* <a href="shanghai.html">Shanghai</a> */}
                     </div>
                   </div>
@@ -166,4 +169,4 @@ const EducationPage = () => {
   );
 };
 
-export default EducationPage;
+export default EducationCollagePage;

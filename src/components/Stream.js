@@ -27,6 +27,7 @@ const Stream = () => {
         <MoonLoader color="#000000" />
       </div>)
     }
+    console.log(course);
     return (
       <div>
         <Navbar/>
@@ -34,12 +35,13 @@ const Stream = () => {
           <div className="navigation"><h3>{course.course.name} / {course.name}</h3></div>
           <div className="container container_video">
             <video
-              width={1280}
               controls
+              className='video-player'
               controlsList="nodownload"
               autoPlay={true}
               src={`${process.env.REACT_APP_API_URL}/api/video?id=${params.id}&q=${quality}`}
             ></video>
+            {/* <FluidPlayer video={`${process.env.REACT_APP_API_URL}/api/video?id=${params.id}&q=${quality}`}/> */}
             <div className='mt-4 ms-auto d-flex'>
               <button disabled={quality === 360} onClick={()=>setQuality(360)} className='btn btn-success'>360p</button>
               <button disabled={quality === 480} onClick={()=>setQuality(480)} className='btn btn-warning mx-2'>480p</button>
