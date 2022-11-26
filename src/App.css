@@ -176,11 +176,13 @@ a:hover{
   display: flex;flex-direction: column;align-items: center;
   /* height: 480px; */
   z-index: 10;
+  width: 60%;
 }
 
 .video-player{
   margin: 0 auto;
   width:  100%;
+  border-radius: 5px;
 }
 .menu {
   width:0%;
@@ -309,9 +311,8 @@ h1 {
 }
 
 .navigation h3 {
-  opacity: .8;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 1.1rem;
   margin: 0px 0px 20px 0px;
   text-align: center;
 }
@@ -341,17 +342,16 @@ h1 {
 }
 
 .kesha h5 {
-  font-size: 18px;
-  opacity: .9;
+  font-size: 1.2rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
 }
 
 .kesha p {
-  font-size: 11px;
+  font-size: 1rem;
   font-weight: 500;
   margin: 10px 0px 0px 0px;
-  opacity: .8;
 }
 
 .kesha img {
@@ -791,6 +791,11 @@ footer p {
   }
   .img_block_logo {
       width:200px;
+  }
+}
+@media screen and (max-width:768px) {
+  .container_video {
+    width: 95%;
   }
 }
 @media screen and (max-width:280px) {

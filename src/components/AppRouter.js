@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router";
 import { Context } from "..";
 import { publicRoutes, adminRoutes, authRoutes } from "../routes";

@@ -21,4 +21,7 @@ hr{
     .my-courses-title h2{
         text-align: center;
        }
+    .my-courses-title h2{
+        margin-left: 0;
+    }
   }

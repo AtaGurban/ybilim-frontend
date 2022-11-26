@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getFavouriteCourse } from "../../http/courseApi";
-import fav from "../../fav.png";
 import "./listCourses.css";
-import { Link } from "react-router-dom";
+
 
 
 const ListCourses = () => {

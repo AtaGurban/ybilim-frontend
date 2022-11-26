@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { MAIN_PAGE } from "../../utils/pathConsts";
-import styles from "./auth.module.css";
 import Navbar from "../../components/Navbar";
 import { login } from "../../http/userAPI";
 import { Context } from "../..";

@@ -934,6 +934,9 @@ section {
 }
 .section_2 {
   background-image: url(./section_2.jpg);
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size:cover;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

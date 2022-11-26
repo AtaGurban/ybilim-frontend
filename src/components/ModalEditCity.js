@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Button, Form, Modal, Dropdown } from "react-bootstrap";
-import { createCity, updateCity } from "../http/educaionApi";
+import {  updateCity } from "../http/educaionApi";
 
 const ModalAddCity = ({ show, onHide, city }) => {
   const [cityName, setCityName] = useState("");

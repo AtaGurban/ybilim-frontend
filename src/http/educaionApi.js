@@ -1,4 +1,4 @@
-import { $authhost, $host } from ".";
+import {  $host } from ".";
 
 export const getAllCityes = async ()=>{
     const {data} = await $host.get(`api/education/city`)

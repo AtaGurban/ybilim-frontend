@@ -1,4 +1,3 @@
-import FluidPlayer from "./components/FluidPlayer";
 import Stream from "./components/Stream";
 import Upload from "./components/Upload";
 import Admin from "./pages/admin/Admin";
@@ -7,7 +6,7 @@ import AdminCollage from "./pages/adminCollage/AdminCollage";
 import AdminCourse from "./pages/adminCourse/AdminCourse";
 import AdminCourseWideo from "./pages/adminCourseWideo/adminCourseWideo";
 import AdminDirection from "./pages/adminDirections/AdminDirections";
-import AdminUsers from "./pages/adminUsers/AdminUsers";
+import AdminTransactions from "./pages/adminUsers/AdminUsers";
 import Auth from "./pages/auth/Auth";
 import CoursePage from "./pages/coursePage/CoursePage";
 import EducationCollagePage from "./pages/educationCollagePage/EducationPage";
@@ -16,7 +15,7 @@ import EducationPage from "./pages/educationPage/EducationPage";
 import MainPage from "./pages/mainPage/MainPage";
 import MyCourses from "./pages/myCourses/MyCourses";
 
-import { UPLOAD_ROUTE,ADMIN_EDUCATION_COLLAGE_ROUTE, EDUCATION_DIRECTION_ROUTE, EDUCATION_COLLAGE_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE, EDUCATION_ROUTE, ADMIN_EDUCATION_ROUTE, ADMIN_EDUCATION_DIRECTION_ROUTE } from "./utils/pathConsts";
+import { UPLOAD_ROUTE,ADMIN_EDUCATION_COLLAGE_ROUTE, EDUCATION_DIRECTION_ROUTE, EDUCATION_COLLAGE_ROUTE, STREAM_ROUTE, MAIN_PAGE,AUTH_PAGE, ADMIN_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_COURSE_WIDEO_ROUTE, MY_COURSES, ADMIN_ROUTE_USERS, COURSE_ROUTE, EDUCATION_ROUTE, ADMIN_EDUCATION_ROUTE, ADMIN_EDUCATION_DIRECTION_ROUTE, ADMIN_TRANSACTION_ROUTE } from "./utils/pathConsts";
 
 
 // export const authRoutes = [
@@ -113,7 +112,7 @@ export const adminRoutes = [
     },
     {
         path: ADMIN_ROUTE_USERS,
-        Element: <AdminUsers/>
+        Element: <AdminTransactions/>
     },
     {
         path: COURSE_ROUTE,
@@ -144,16 +143,8 @@ export const adminRoutes = [
         Element: <EducationDirectionPage />
     },
     {
-        path: `/fluid`,
-        Element: <FluidPlayer />
+        path: ADMIN_TRANSACTION_ROUTE,
+        Element: <AdminTransactions />
     },
 ]
 
-
-// export const adminRoutes = [
-//     {
-//         path: BASKET_ROUTE,
-//         Element: <Basket/>
-//     },
-
-// ]

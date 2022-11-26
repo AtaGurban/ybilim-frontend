@@ -10,6 +10,7 @@ function ModalAddVideo({ show, onHide }) {
   // const [description, setDescription] = useState('')
   const [loaderPercent, setLoaderPercent] = useState(0);
   const [loaderClass, setLoaderClass] = useState("progress d-none");
+  const [loaderClassPercent, setLoaderClassPercent] = useState("ms-2 d-none");
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
   const params = useParams();
@@ -42,6 +43,7 @@ function ModalAddVideo({ show, onHide }) {
         let percent = Math.floor((loaded * 100) / total);
         setLoaderPercent(percent);
         setLoaderClass("progress");
+        setLoaderClassPercent("ms-2");
         console.log(percent);
       },
     };
@@ -100,6 +102,7 @@ function ModalAddVideo({ show, onHide }) {
             />
           </div>
           <div className="my-2">
+            <span className={loaderClassPercent}>{loaderPercent}%</span>
             <div className={loaderClass}>
               <div
                 className="progress-bar"

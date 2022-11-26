@@ -3,9 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import { getOneCourse } from '../../http/courseApi';
 import styles from "./coursePage.module.css";
-import { Spinner } from 'react-bootstrap';
 import Footer from '../../components/Footer/Footer';
-
+import {MoonLoader} from 'react-spinners'
 
 
 const CoursePage = () => {
@@ -19,13 +18,13 @@ const CoursePage = () => {
     }, [])
 
       
-  if(loading){
-    return (
-      <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
-      <Spinner animation={'grow'}/>
-    </div>)
-  }
-    // console.log(course);
+
+    if(loading){
+        return (
+          <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
+          <MoonLoader color="#000000" />
+        </div>)
+      }
     return (
         <div className='wrapper-all'>
         <div className={`${styles['wrapper']}`}>

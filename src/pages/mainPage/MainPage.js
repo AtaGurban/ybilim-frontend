@@ -15,7 +15,7 @@ import ListCourses from "../../components/ListCourses/ListCourses";
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
 import { registration } from "../../http/userAPI";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ADMIN_ROUTE, AUTH_PAGE, MY_COURSES } from "../../utils/pathConsts";
 
 const MainPage = observer(() => {
@@ -183,7 +183,7 @@ const MainPage = observer(() => {
       <div className={`${styles["big_block"]}`}>
         <div className={`${styles["left_block"]}`}>
           <h1>Biziň kursumyzda siz nämani öwrenersiňiz</h1>
-          <div className={`${styles["left_mini"]}`}>
+          <div className={`${styles["left_mini22"]}`}>
             <p>
               Biznese degişli ähli bilmeli wajyp pudaklar biziň webinarymyzda
               tapyp, öwrenip we ýerine ýetirip bilersiňiz

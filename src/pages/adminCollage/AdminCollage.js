@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
-import { ADMIN_COURSE_ROUTE, ADMIN_EDUCATION_DIRECTION_ROUTE, ADMIN_EDUCATION_ROUTE, ADMIN_ROUTE_USERS } from "../../utils/pathConsts";
+import { ADMIN_COURSE_ROUTE, ADMIN_EDUCATION_DIRECTION_ROUTE, ADMIN_EDUCATION_ROUTE, ADMIN_ROUTE_USERS, ADMIN_TRANSACTION_ROUTE } from "../../utils/pathConsts";
 import styles from "./admincourse.module.css";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
@@ -74,6 +74,7 @@ const AdminCollage = observer(() => {
                 <Link to={ADMIN_COURSE_ROUTE}>Kurslar</Link>
               </li>
               <Link to={ADMIN_EDUCATION_ROUTE}><li className='d-block btn btn-primary mb-3' data-type='title-type' >Okuw</li></Link>
+              <Link to={ADMIN_TRANSACTION_ROUTE}><li className='d-block btn btn-outline-primary mb-3' data-type='title-type' >Satyn alnan kurslar</li></Link>
             </ul>
           </div>
           <div className="admin-inform flex-column d-flex col-10 px-4">
