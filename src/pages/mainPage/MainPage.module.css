@@ -941,7 +941,7 @@ section {
   background-position: center center;
   background-repeat: no-repeat;
   position: relative;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 .section_2 * {
   color: white;

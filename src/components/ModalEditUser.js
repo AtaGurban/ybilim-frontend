@@ -46,8 +46,6 @@ const ModalEditUser = ({ show, onHide, userId, userName, role, isTeacherTwo }) =
     setIsTeacher(isTeacherTwo)
   }, [isTeacherTwo])
 
-console.log(isAdmin);
-
   return (
     <div>
       <Modal show={show} onHide={onHide} size="lg" centered>

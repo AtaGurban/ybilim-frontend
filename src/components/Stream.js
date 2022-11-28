@@ -36,15 +36,16 @@ const Stream = () => {
           <div className="container container_video"> 
             <video
               controls
-              autoplay 
+              autoPlay 
               loop 
               muted 
-              playsinline
+              playsInline
               className='video-player'
               controlsList="nodownload"
               src={`${process.env.REACT_APP_API_URL}/api/video?id=${params.id}&q=${quality}`}
               type='video/mp4'
-            ></video>
+            >
+            </video>
             <div className='mt-4 ms-auto d-flex'>
               <button disabled={quality === 360} onClick={()=>setQuality(360)} className='btn btn-success'>360p</button>
               <button disabled={quality === 480} onClick={()=>setQuality(480)} className='btn btn-warning mx-2'>480p</button>
@@ -60,7 +61,7 @@ const Stream = () => {
             {/* <p>{course.description}</p> */}
           </div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     );
 };

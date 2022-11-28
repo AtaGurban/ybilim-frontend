@@ -10,7 +10,7 @@ import { getAllUsers, removeUser } from "../../http/userAPI";
 import ModalBuyCourse from "../../components/ModalBuyCourse";
 import ModalEditUser from "../../components/ModalEditUser";
 
-const AdminTransactions = observer(() => {
+const AdminUsers = observer(() => {
     const [users, setUsers] = useState([])
     const [active, setActive] = useState(1)
     const [userId, setUserId] = useState(null)
@@ -97,7 +97,7 @@ const AdminTransactions = observer(() => {
               <Link to={ADMIN_TRANSACTION_ROUTE}><li className='d-block btn btn-outline-primary mb-3' data-type='title-type' >Satyn alnan kurslar</li></Link>
             </ul>
           </div>
-          <div className="admin-inform flex-column d-flex col-10 px-4">
+          <div className={`${styles['admin-inform']} flex-column d-flex col-10 px-4`}>
             <div className="w-100">
               <table width="100%" border="2" className="mt-3">
                 <thead>
@@ -161,4 +161,4 @@ const AdminTransactions = observer(() => {
   );
 });
 
-export default AdminTransactions;
+export default AdminUsers;

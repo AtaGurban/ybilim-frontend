@@ -6,7 +6,8 @@ import AdminCollage from "./pages/adminCollage/AdminCollage";
 import AdminCourse from "./pages/adminCourse/AdminCourse";
 import AdminCourseWideo from "./pages/adminCourseWideo/adminCourseWideo";
 import AdminDirection from "./pages/adminDirections/AdminDirections";
-import AdminTransactions from "./pages/adminUsers/AdminUsers";
+import AdminTransaction from "./pages/adminTransactions/AdminTransactions";
+import AdminUsers from "./pages/adminUsers/AdminUsers";
 import Auth from "./pages/auth/Auth";
 import CoursePage from "./pages/coursePage/CoursePage";
 import EducationCollagePage from "./pages/educationCollagePage/EducationPage";
@@ -112,7 +113,7 @@ export const adminRoutes = [
     },
     {
         path: ADMIN_ROUTE_USERS,
-        Element: <AdminTransactions/>
+        Element: <AdminUsers/>
     },
     {
         path: COURSE_ROUTE,
@@ -144,7 +145,7 @@ export const adminRoutes = [
     },
     {
         path: ADMIN_TRANSACTION_ROUTE,
-        Element: <AdminTransactions />
+        Element: <AdminTransaction />
     },
 ]
 

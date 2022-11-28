@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from ".";
 import { check } from "./http/userAPI";
 import {MoonLoader} from 'react-spinners'
+import Footer from "./components/Footer/Footer";
 
 const App = observer(() => {
   const { user } = useContext(Context) 
@@ -17,7 +18,7 @@ const App = observer(() => {
   //     await getAllCourse().then((data) => setCourses(data));
   //   })();
   // }, []);
-  useEffect(()=>{
+  useEffect(()=>{ 
      (async function(){
       await check().then(async data => {
         await user.setUser(data)
@@ -38,7 +39,7 @@ const App = observer(() => {
     <BrowserRouter>
       {/* <Navbar/> */}
       <AppRouter />
-      {/* <Footer/> */}
+      <Footer/>
     </BrowserRouter>
   );
 });

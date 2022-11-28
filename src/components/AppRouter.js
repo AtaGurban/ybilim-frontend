@@ -14,7 +14,7 @@ const AppRouter = observer(() => {
           adminRoutes.map((route) => (
             <Route
               key={route.path}
-              path={route.path}
+              path={route.path} 
               element={route.Element}
               exact
             />

@@ -25,27 +25,49 @@ const MyCourses = () => {
   }
   return (
     <div className="h-100">
-      <div className="">
-        <Navbar />
-        <div className="container">
-          <div className={`${styles["my-courses-title"]} c-bold mt-5`}>
-            <h2>Meniň kurslarym</h2>
-          </div>
-          <hr />
-          <div className="boxes-card">
-            {courses.map((i) => (
-              (i.courseId) ? 
-              <CourseCard
-                key={i.id}
-                id={i.courseId}
-                img={i?.course?.img}
-                title={i?.course?.name}
-              /> : null
-            ))}
+
+      <div className="h-100">
+        <div className="">
+          <Navbar />
+          <div className="container">
+            <div className={`${styles["my-courses-title"]} c-bold mt-5`}>
+              <h2>Meniň kurslarym</h2>
+            </div>
+            <hr />
+            <div className="boxes-card">
+              {courses.map((i) => (
+                (i.courseId) ? 
+                <CourseCard
+                  key={i.id}
+                  id={i.courseId}
+                  img={i?.course?.img}
+                  title={i?.course?.name}
+                /> : null
+              ))}
+              {/* {courses.map((i) => (
+                (i.courseId) ? 
+                <CourseCard
+                  key={i.id}
+                  id={i.courseId}
+                  img={i?.course?.img}
+                  title={i?.course?.name}
+                /> : null
+              ))} */}
+              {/* {courses.map((i) => (
+                (i.courseId) ? 
+                <CourseCard
+                  key={i.id}
+                  id={i.courseId}
+                  img={i?.course?.img}
+                  title={i?.course?.name}
+                /> : null
+              ))} */}
+
+            </div>
           </div>
         </div>
       </div>
-      <Footer />
+        {/* <Footer /> */}
     </div>
   );
 };

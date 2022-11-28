@@ -1,10 +1,10 @@
-import React from 'react';
-import keshaLogo from './kesha_logo.png'
+import React from "react";
+import keshaLogo from "./kesha_logo.png";
 
 const Footer = () => {
-    return (
-
-        <footer>
+  return (
+    <div className="mt-auto" >
+      <footer >
         <div className="footer_container">
           <img src={keshaLogo} alt="" />
           <p>
@@ -23,7 +23,8 @@ const Footer = () => {
           </p>
         </div>
       </footer>
-    );
+    </div>
+  );
 };
 
 export default Footer;

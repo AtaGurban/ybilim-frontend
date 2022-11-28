@@ -30,6 +30,15 @@ export const getAllUsers = async (page)=>{
     const {data} = await $authhost.get(`api/admin/get-users?page=${page}`)
     return data
 }
+export const getAllTransactions = async (page)=>{
+    const {data} = await $authhost.get(`api/user/transaction?page=${page}`)
+    return data
+}
+
+export const deleteTransaction = async (id)=>{
+    const {data} = await $authhost.delete(`api/user/transaction?id=${id}`)
+    return data
+}
 export const getOneUsers = async (id)=>{
     const {data} = await $authhost.get(`api/user/get-user?id=${id}`)
     return data

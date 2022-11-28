@@ -243,10 +243,10 @@ const MainPage = observer(() => {
           </span>
         </div>
       </div>
-
+{/* 
       <div className={`${styles["img123"]}`}>
         <img src={yone} />
-      </div>
+      </div> */}
       {/* 
       <div className={`${styles["signin"]}`} id="ids">
         <iframe

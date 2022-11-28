@@ -32,7 +32,7 @@ const CoursePage = () => {
             <div>
                 <div className={`${styles.header}`}>
                     <h1>{course.name}</h1>
-                    <button className={`btn btn-primary ${styles['btn-start']} mt-4`}><Link to={`/stream/${course.video[0].id}`}>BAŞLA</Link></button>
+                    <button className={`btn btn-primary ${styles['btn-start']} mt-4`}><Link to={`/stream/${course.video[0]?.id}`}>BAŞLA</Link></button>
                 </div>
                 <section className={`container`}>
                     <div className={`${styles['section-class']}`}>
@@ -50,7 +50,7 @@ const CoursePage = () => {
                 </section>
             </div>
         </div>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
     );
 };
