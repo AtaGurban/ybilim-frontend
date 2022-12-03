@@ -8,7 +8,6 @@ const ModalAddCity = ({ show, onHide }) => {
   const [img, setImg] = useState(null);
   const [loaderPercent, setLoaderPercent] = useState(0);
   const [loaderClass, setLoaderClass] = useState("progress d-none");
-  const prices = ["300$ - 500$", "750$ - 1000$", "1000$ - 1500$"];
   const selectFileOne = (e) => {
     setImg(e.target.files[0]);
   };
@@ -58,26 +57,38 @@ const ModalAddCity = ({ show, onHide }) => {
               onChange={(e) => setCityName(e.target.value)}
               placeholder={"Şäheriň ady"}
             />
-          </Form>
-          <hr />
-          <span className="mt-3 c-bold">Şäheriň suraty</span>
-          <Form.Control className="my-3" type="file" onChange={selectFileOne} />
-          <hr />
-          <Dropdown className="mb-3">
+            <hr />
+            <span className="mt-3 c-bold">Şäheriň suraty</span>
+            <Form.Control
+              className="my-3"
+              type="file"
+              onChange={selectFileOne}
+            />
+            <hr />
+            {/* <Dropdown className="mb-3">
             <Dropdown.Toggle>
               {dropPrice || "Baha aralygyny saýlaň"}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {prices.map((price, index) => (
                 <Dropdown.Item
-                  onClick={() => setDropPrice(price)}
-                  key={index}
+                onClick={() => setDropPrice(price)}
+                key={index}
                 >
                   {price}
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
+            <Form.Control
+              type="number"
+              className="my-3 w-25 d-inline me-3"
+              value={dropPrice}
+              onChange={(e) => setDropPrice(e.target.value)}
+              placeholder={"Şäheriň bahasy"}
+            />
+            <span>$</span>
+          </Form>
           <div className="my-2">
             <div className={loaderClass}>
               <div

@@ -8,7 +8,6 @@ const ModalAddDirection = ({ show, onHide, collageId }) => {
   const [img, setImg] = useState(null);
   const [loaderPercent, setLoaderPercent] = useState(0);
   const [loaderClass, setLoaderClass] = useState("progress d-none");
-  const prices = ["300$ - 500$", "750$ - 1000$", "1000$ - 1500$"];
   const selectFileOne = (e) => {
     setImg(e.target.files[0]);
   };
@@ -63,7 +62,15 @@ const ModalAddDirection = ({ show, onHide, collageId }) => {
           <span className="mt-3 c-bold">Okuw ugrunyň suraty</span>
           <Form.Control className="my-3" type="file" onChange={selectFileOne} />
           <hr />
-          <Dropdown className="mb-3">
+          <Form.Control
+              type="number"
+              className="my-3 w-25 d-inline me-3"
+              value={dropPrice}
+              onChange={(e) => setDropPrice(e.target.value)}
+              placeholder={"Okuw ugrunyň bahasy"}
+            />
+            <span>$</span>
+          {/* <Dropdown className="mb-3">
             <Dropdown.Toggle>
               {dropPrice || "Baha aralygyny saýlaň"}
             </Dropdown.Toggle>
@@ -77,7 +84,7 @@ const ModalAddDirection = ({ show, onHide, collageId }) => {
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
           <div className="my-2">
             <div className={loaderClass}>
               <div

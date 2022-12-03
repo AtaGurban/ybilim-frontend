@@ -8,9 +8,10 @@ import { Context } from ".";
 import { check } from "./http/userAPI";
 import {MoonLoader} from 'react-spinners'
 import Footer from "./components/Footer/Footer";
+import { getBanner } from "./http/bannerApi";
 
 const App = observer(() => {
-  const { user } = useContext(Context) 
+  const { user, banner } = useContext(Context) 
   const [loading, setLoading] = useState(true)
   // const navigate = useNavigate()
   // useEffect(() => {
@@ -20,11 +21,14 @@ const App = observer(() => {
   // }, []);
   useEffect(()=>{ 
      (async function(){
+       await getBanner().then((data) => {if (data){
+         banner.setBanner(data)
+       } })
       await check().then(async data => {
+        console.log(data);
         await user.setUser(data)
         await user.setIsAuth(true) 
       }).finally(() => setLoading(false))
-
     })();
   }, []) 
 

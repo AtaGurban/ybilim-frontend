@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'shaka-player/dist/controls.css';
 import {UserStore} from './store/UserStore';  
 import App from './App';
+import { BannerStore } from './store/bannerStore';
 
 export const Context = createContext(null);
 
@@ -11,6 +12,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Context.Provider value={{
     user: new UserStore(),
+    banner: new BannerStore(),
   }}>
     <App />
   </Context.Provider>,

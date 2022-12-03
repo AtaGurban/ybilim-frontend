@@ -44,24 +44,6 @@ const MyCourses = () => {
                   title={i?.course?.name}
                 /> : null
               ))}
-              {/* {courses.map((i) => (
-                (i.courseId) ? 
-                <CourseCard
-                  key={i.id}
-                  id={i.courseId}
-                  img={i?.course?.img}
-                  title={i?.course?.name}
-                /> : null
-              ))} */}
-              {/* {courses.map((i) => (
-                (i.courseId) ? 
-                <CourseCard
-                  key={i.id}
-                  id={i.courseId}
-                  img={i?.course?.img}
-                  title={i?.course?.name}
-                /> : null
-              ))} */}
 
             </div>
           </div>

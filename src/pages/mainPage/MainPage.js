@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./MainPage.module.css";
 import logo from "./logo (2).png";
 import one from "./1.png";
@@ -22,8 +22,11 @@ const MainPage = observer(() => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [classBackground, setClassBackground] = useState({
+    backgroundColor:'#000'
+  });
   const [password, setPassword] = useState("");
-  const { user } = useContext(Context);
+  const { user, banner } = useContext(Context);
 
 
   const signUp = async () => {
@@ -44,56 +47,73 @@ const MainPage = observer(() => {
     }
   };
 
+  useEffect(() => {
+    if(banner.banner[0]){
+      console.log('dsds');
+      setClassBackground({
+        backgroundImage:`url(${process.env.REACT_APP_API_URL}api/static/${banner.banner[0].img})`, backgroundRepeat: 'no-repeat', backgroundSize:'cover', backgroundPosition:'center center'
+      })
+    } else {
+      setClassBackground({
+        backgroundColor:'#000'
+      })
+    }
+  }, [])
+  
+  console.log(classBackground);
+
   return (
     <div className="h-100">
-      <div className={`${styles.menu}`}>
-        <div className={`${styles["menu_mini"]}`}>
-          <div className={`${styles["center_menu"]}`}>
-            <img src={logo} style={{ height: "40px" }} />
+      <div style={classBackground}>
+        <div className={`${styles.menu}`}>
+          <div className={`${styles["menu_mini"]}`}>
+            <div className={`${styles["center_menu"]}`}>
+              <img src={logo} style={{ height: "40px" }} />
+            </div>
+            {user.isAuth ? (
+              <div className={`${styles["btn-main-page"]} container text-end d-flex`}>
+                {/* <button className="btn-my-courses me-2 text-start "><Link to={MY_COURSES}>KURSLARYM</Link></button>   */}
+                {(user.user.role !== 'USER') ?<button className="btn-my-courses me-2 text-start"><Link to={ADMIN_ROUTE}>Admin panel</Link></button>  : null}
+              </div>
+            ) : (
+              <div className={`${styles["right_menu"]} text-center`}>
+                <Link to={AUTH_PAGE}>Başla</Link>{" "}
+              </div>
+            )}
           </div>
-          {user.isAuth ? (
-            <div className={`${styles["btn-main-page"]} container text-end d-flex`}>
-              {/* <button className="btn-my-courses me-2 text-start "><Link to={MY_COURSES}>KURSLARYM</Link></button>   */}
-              {(user.user.role !== 'USER') ?<button className="btn-my-courses me-2 text-start"><Link to={ADMIN_ROUTE}>Admin panel</Link></button>  : null}
-            </div>
-          ) : (
-            <div className={`${styles["right_menu"]} text-center`}>
-              <Link to={AUTH_PAGE}>Başla</Link>{" "}
-            </div>
-          )}
         </div>
-      </div>
-      <header
-        className={`${styles["w3-display-container"]} ${styles["bgimg-1"]} ${styles["w3-grayscale-min"]}`}
-        // "bgimg-1 w3-display-container w3-grayscale-min"
-        id="home"
-      >
-        <div
-          className={`${styles["w3-display-left"]} ${styles["w3-text-white"]}`}
-          style={{ padding: "0%", width: "100%", textAlign: "center" }}
+        <header
+          className={`${styles["w3-display-container"]} ${styles["bgimg-1"]} ${styles["w3-grayscale-min"]}`}
+          // "bgimg-1 w3-display-container w3-grayscale-min"
+          id="home"
         >
-          <span className={`${styles["w3-large"]}`}>Ýönekey Bilim</span>
-          <br />
-          <span className={`${styles["grant"]}`}>
-            Biznesiňiziň birinji ädimini biz bilen başlaň !
-          </span>
-          <div className={`${styles["button_block"]}`}>
-            <div className={`${styles["mini_button_block"]}`}>
-              <a href="#china">Hytaýa Gitjek</a>
+          <div
+            className={`${styles["w3-display-left"]} ${styles["w3-text-white"]}`}
+            style={{ padding: "0%", width: "100%", textAlign: "center" }}
+          >
+            <span className={`${styles["w3-large"]}`}>Ýönekey Bilim</span>
+            <br />
+            <span className={`${styles["grant"]}`}>
+              Biznesiňiziň birinji ädimini biz bilen başlaň !
+            </span>
+            <div className={`${styles["button_block"]}`}>
+              <div className={`${styles["mini_button_block"]}`}>
+                <a href="#china">Hytaýa Gitjek</a>
+              </div>
+              {
+                user.isAuth ? (<div className={`${styles["mini_button_block"]}`}>
+                <Link to={MY_COURSES}>Kurslarym</Link>
+              </div>) : (<div className={`${styles["mini_button_block"]}`}>
+                <a href="#auth-block">Kursa ýazyljak</a>
+              </div>)
+              }
+              {/* <div className={`${styles["mini_button_block"]}`}>
+                <a href="#auth-block">Kursa ýazyljak</a>
+              </div> */}
             </div>
-            {
-              user.isAuth ? (<div className={`${styles["mini_button_block"]}`}>
-              <Link to={MY_COURSES}>Kurslarym</Link>
-            </div>) : (<div className={`${styles["mini_button_block"]}`}>
-              <a href="#auth-block">Kursa ýazyljak</a>
-            </div>)
-            }
-            {/* <div className={`${styles["mini_button_block"]}`}>
-              <a href="#auth-block">Kursa ýazyljak</a>
-            </div> */}
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
       <section className={`${styles["section_1"]}`} id="section">
         <div className={`${styles["container"]}`}>
           <h2>

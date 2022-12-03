@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Button, Form, Modal } from "react-bootstrap";
 import { createVideo } from "../http/courseApi";
 
-function ModalAddVideo({ show, onHide }) {
+function ModalEditBanner({ show, onHide }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   // const [description, setDescription] = useState('')
@@ -119,4 +119,4 @@ function ModalAddVideo({ show, onHide }) {
   );
 }
 
-export default ModalAddVideo;
+export default ModalEditBanner;

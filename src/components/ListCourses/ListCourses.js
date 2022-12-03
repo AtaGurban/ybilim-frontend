@@ -22,12 +22,6 @@ const ListCourses = () => {
   return (
     <div className="list-course">
       <div className="container">
-        {/* <div className="search">
-          <input type="text" id="search" placeholder="Gözleg..." />
-          <button className="btn-sham">
-            <img src={search} alt="" />
-          </button>
-        </div> */}
         <div className="boxes">
           {courses.map((i) => (
             <div className="col-sm-6 col-md-4 col-12" key={i.id} >
@@ -36,15 +30,6 @@ const ListCourses = () => {
                   <img src={`${process.env.REACT_APP_API_URL}api/static/${i.img}`} alt={`${i.img}`} />
                 </div>
                 <div className="box_content">
-                  {/* <div className="box_avatar skeleton">
-                    <img
-                      src={fav}
-                      alt=""
-                      width="35px"
-                      height="35px"
-                      className="skeleton"
-                    />
-                  </div> */}
                   <div className="box_text">
                     <h2 className="skeleton box_h2">
                       {i.name}

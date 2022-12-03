@@ -4,31 +4,33 @@ import Navbar from "../../components/Navbar";
 import { ADMIN_BANNER_ROUTE, ADMIN_COURSE_ROUTE, ADMIN_EDUCATION_ROUTE, ADMIN_ROUTE_USERS, ADMIN_TRANSACTION_ROUTE } from "../../utils/pathConsts";
 import styles from "./admincourse.module.css";
 import { removeCourse } from "../../http/courseApi";
-import ModalAddCourse from "../../components/ModalAddCourse";
 import { observer } from "mobx-react-lite";
 import { getAllCourse } from "../../http/courseApi";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../..";
-import ModalEditCourse from "../../components/ModalEditCourse";
+import ModalAddBanner from "../../components/ModalAddBanner";
+import ModalEditBanner from "../../components/ModalEditBanner";
+import { deleteBanner, getBanner } from "../../http/bannerApi";
 
-const AdminCourse = observer(() => {
-  const [courses, setCourses] = useState([])
-  const { user } = useContext(Context) 
+const AdminBanner = observer(() => {
+  // const [bannerView, setBannerView] = useState([])
+  const { user, banner } = useContext(Context) 
   const [currentCourse, setCurrentCourse] = useState('')
   const [modalAddCourseVisible, setModalAddCourseVisible] = useState(false)
   const [modalEditCourseVisible, setModalEditCourseVisible] = useState(false)
   const navigate = useNavigate()
   const [removeBtn, setRemoveBtn] = useState('btn btn-danger')
 
-  const removeCourseFunc = async(id)=>{
+  const removeBannerFunc = async(id)=>{
       if (user.user.role === 'SUPERADMIN'){
-        await removeCourse(id).then((data)=> window.location.reload())
+        await deleteBanner(id).then((data)=> window.location.reload())
       }
   }
   useEffect(()=>{
-      (async function(){
-          await getAllCourse().then((data) => setCourses(data));
-      })()
+      // (async function(){
+      //     await getBanner().then((data) => setBannerView(data));
+      // })()
+
       if (user.user.role !== 'SUPERADMIN'){
         setRemoveBtn('d-none')
       }
@@ -43,8 +45,7 @@ const AdminCourse = observer(() => {
 
   const tableAttributes = [
     "id",
-    "Ady",
-    "beýany",
+    "Duran sahypasy",
     "Döredilen wagty",
     "Düwmeler",
   ];
@@ -55,8 +56,8 @@ const AdminCourse = observer(() => {
         <div className="add-new my-3 text-end">
             <button onClick={() => setModalAddCourseVisible(true)} className="btn btn-warning">Täzesini goş</button>
         </div>
-        <ModalEditCourse course={currentCourse} show={modalEditCourseVisible} onHide={() => setModalEditCourseVisible(false)}/>
-        <ModalAddCourse show={modalAddCourseVisible} onHide={() => setModalAddCourseVisible(false)} />
+        <ModalEditBanner course={currentCourse} show={modalEditCourseVisible} onHide={() => setModalEditCourseVisible(false)}/>
+        <ModalAddBanner show={modalAddCourseVisible} onHide={() => setModalAddCourseVisible(false)} />
         <div className="row">
           <div
             className={`${styles["admin-nav"]} flex-column d-flex col-2 p-2`}
@@ -69,14 +70,14 @@ const AdminCourse = observer(() => {
                 Diňleýjiler
               </li></Link>
               <li
-                className="d-block btn btn-primary mb-3"
+                className="d-block btn btn-outline-primary mb-3"
                 data-type="title-type"
               >
                 <Link to={ADMIN_COURSE_ROUTE}>Kurslar</Link>
               </li>
               <Link to={ADMIN_EDUCATION_ROUTE}><li className='d-block btn btn-outline-primary mb-3' data-type='title-type' >Okuw</li></Link>
               <Link to={ADMIN_TRANSACTION_ROUTE}><li className='d-block btn btn-outline-primary mb-3' data-type='title-type' >Satyn alnan kurslar</li></Link>
-              <Link to={ADMIN_BANNER_ROUTE}><li className='d-block btn btn-outline-primary mb-3' data-type='title-type' >Banner</li></Link>
+              <Link to={ADMIN_BANNER_ROUTE}><li className='d-block btn btn-primary mb-3' data-type='title-type' >Banner</li></Link>
             </ul>
           </div>
           <div className="admin-inform flex-column d-flex col-10 px-4">
@@ -92,15 +93,14 @@ const AdminCourse = observer(() => {
                   </tr>
                 </thead>
                 <tbody>
-                  {courses.map((i) => (
+                  {banner.banner.map((i) => (
                     <tr key={i.id}>
                       <td className="table-node p-1">{i.id}</td>
-                      <td className="table-node p-1 w-25">{i.name}</td> 
-                      <td className="table-node p-1 w-25">{i.description}</td>
+                      <td className="table-node p-1 w-25">{i.page}</td> 
                       <td className="table-node p-1">{i.createdAt}</td>
                       <td className="table-node p-1 text-center justify-content-center">
                         <div className="d-flex justify-content-center">
-                        <button
+                        {/* <button
                           onClick={() => navigate(`/admin/course/${i.id}`)}
                           className="btn btn-success mx-1"
                           title="Wideolar"
@@ -113,9 +113,9 @@ const AdminCourse = observer(() => {
                           title="Üýtgetmek"
                         >
                           <i className="fas fa-cogs"></i>
-                        </button>
+                        </button> */}
                         <button
-                          onClick={() => removeCourseFunc(i.id)}
+                          onClick={() => removeBannerFunc(i.id)}
                           disabled={(user.user.role !== 'SUPERADMIN')}
                           className={removeBtn}
                           title="Pozmak"
@@ -136,4 +136,4 @@ const AdminCourse = observer(() => {
   );
 });
 
-export default AdminCourse;
+export default AdminBanner;

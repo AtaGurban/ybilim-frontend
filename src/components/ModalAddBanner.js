@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { Button, Form, Modal } from "react-bootstrap";
-import { createVideo } from "../http/courseApi";
+import { createBanner } from "../http/bannerApi";
 
-function ModalAddVideo({ show, onHide }) {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+function ModalAddBanner({ show, onHide }) {
+
   // const [description, setDescription] = useState('')
   const [loaderPercent, setLoaderPercent] = useState(0);
   const [loaderClass, setLoaderClass] = useState("progress d-none");
   const [loaderClassPercent, setLoaderClassPercent] = useState("ms-2 d-none");
   const [img, setImg] = useState(null);
-  const [video, setVideo] = useState(null);
-  const params = useParams();
 
   const selectFileImg = (e) => {
     setImg(e.target.files[0]);
   };
 
-  const selectFileVideo = (e) => {
-    setVideo(e.target.files[0]);
-  };
+
 
   useEffect(() => {
     if (loaderPercent === 100) {
@@ -30,12 +24,7 @@ function ModalAddVideo({ show, onHide }) {
 
   const addCourse = async () => {
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("courseId", params.id);
-    formData.append("number", number);
-    // formData.append('description', description)
     formData.append("img", img);
-    formData.append("video", video);
     const options = {
       onUploadProgress: (progressEvent) => {
         const { loaded, total } = progressEvent;
@@ -46,7 +35,7 @@ function ModalAddVideo({ show, onHide }) {
       },
     };
     try {
-      await createVideo(formData, options).then((data) => {
+      await createBanner(formData, options).then((data) => {
         window.location.reload();
       });
     } catch (error) {
@@ -58,23 +47,9 @@ function ModalAddVideo({ show, onHide }) {
     <>
       <Modal show={show} onHide={onHide}>
         <Modal.Header closeButton>
-          <Modal.Title>Video goşmak üçin penjire</Modal.Title>
+          <Modal.Title>Banner goşmak üçin penjire</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <img src="img/video.gif" alt="" width="150px" />
-          <input
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Video Name..."
-            name="name"
-          />
-          <input
-            onChange={(e) => setNumber(e.target.value)}
-            type="number"
-            placeholder="Video number..."
-            name="name"
-          />
-          {/* <textarea onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Beyan..." name="name"/> */}
           <div className="inputs p-2">
             <Form>
 
@@ -83,12 +58,6 @@ function ModalAddVideo({ show, onHide }) {
                 className="my-2"
                 type="file"
                 onChange={selectFileImg}
-              />
-            <span className="c-bold">Video Saýla</span>
-              <Form.Control
-                className="my-2"
-                type="file"
-                onChange={selectFileVideo}
               />
             </Form>
           </div>
@@ -119,4 +88,4 @@ function ModalAddVideo({ show, onHide }) {
   );
 }
 
-export default ModalAddVideo;
+export default ModalAddBanner;

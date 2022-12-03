@@ -1,36 +1,24 @@
 import React, {useState, useEffect} from "react";
-import book from './book.jpg'
-import logo from '../mainPage/yone.png'
+import verified from "./25899.png";
+import styles from "./education.module.css";
 import keshaLogo from './kesha_logo.png'
 import {MoonLoader} from 'react-spinners'
 import { getAllCollages } from "../../http/educaionApi";
 import { Link, useParams } from "react-router-dom";
-import {  EDUCATION_DIRECTION_ROUTE } from "../../utils/pathConsts";
+import {  EDUCATION_DIRECTION_ROUTE, MAIN_PAGE } from "../../utils/pathConsts";
 
 const EducationCollagePage = () => {
   const params = useParams()
   const [allCityes, setAllCityes] = useState([])
-  const [cheapCityes, setCheapCityes] = useState([])
-  const [mediumCityes, setMediumCityes] = useState([])
+
   const [loading, setLoading] = useState(true)
-  const [expensiveCityes, setExpensiveCityes] = useState([])
+
   useEffect(()=>{
     (async function () {
       await getAllCollages(params.id).then((data) => setAllCityes(data)).finally(() => setLoading(false));
     })();
   }, [])
 
-  useEffect(()=>{
-    setCheapCityes(allCityes.filter((i)=>{
-      return i.price === '300$ - 500$'
-    })) 
-    setMediumCityes(allCityes.filter((i)=>{
-      return i.price === '750$ - 1000$'
-    })) 
-    setExpensiveCityes(allCityes.filter((i)=>{
-      return i.price === '1000$ - 1500$'
-    })) 
-  }, [allCityes])
   if(loading){
     return (
       <div style={{alignItems: 'center',  justifyContent: 'center', height: '100vh'}} className='d-flex'>
@@ -38,134 +26,64 @@ const EducationCollagePage = () => {
     </div>)
   }
   return (
-    <div>
-      <div className="china">
-        <div className="china_logo_img">
-          <img src={book}/>
-        </div>
-
-        <div className="china_logo_text">
-          <div className="img_block_logo">
-            <img src={logo}/>
-          </div>
-        </div>
-
-        <div className="china_vacation_txt">
-          <div className="china_h1">
-            <h1>
-              Türkmenistanda öňde baryjy okuwa we işe ýerleşdirýän Ý-Bilim
-              Kärhanasy
-            </h1>
-          </div>
-          <div className="china_p">
-            <p>
-              Ý Bilim onlaýn platformasy bilen sen hytaýa okuwa gelmäne
-              mümkinçiligiň bar we islegiňize göra şäherlerde, okuwlarda okamana
-              başlamak üçin uly mümkinçilikler döredilen.
-            </p>
-          </div>
-          <div className="china_button">
-            <button>Hytaya gitjek</button>
-          </div>
-        </div>
+    <div className={`${styles["body"]}`}>
+    <div className={`${styles["market_logo"]}`}>
+      <div className={`${styles["market_slog"]}`}>
+        <Link to={MAIN_PAGE}>
+          <img src={keshaLogo} />
+        </Link>
       </div>
-
-      <div className="city_name">
-        <div className="city_h1">
-          <h1>Okuwlar</h1>
-        </div>
-
-        <div className="flip_book">
-          <div className="accordion" id="fly">
-            <div className="accordion_mini">
-              <h1>500$ - 1000$</h1>
-            </div>
-            {
-              cheapCityes.map((i)=>
-                <div key={i.id} className="accordion_mini2">
-                  <div className="flip_book_element">
-                    <div className="flip_book_img">
-                      <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
-                    </div>
-                    <div className="flip_book_design">
-                      <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>{i.name}</Link>
-                      {/* <a href="shanghai.html">Shanghai</a> */}
-                    </div>
-                  </div>
-              </div>
-              )
-            }
-
-          </div>
-        </div>
-        <div className="flip_book">
-          <div className="accordion" id="fly">
-            <div className="accordion_mini">
-              <h1>350$ - 700$</h1>
-            </div>
-
-            {
-              mediumCityes.map((i)=>
-                <div key={i.id} className="accordion_mini2">
-                  <div className="flip_book_element">
-                    <div className="flip_book_img">
-                      <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
-                    </div>
-                    <div className="flip_book_design">
-                      <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>{i.name}</Link>
-                      {/* <a href="shanghai.html">Shanghai</a> */}
-                    </div>
-                  </div>
-              </div>
-              )
-            }
-          </div>
-        </div>
-
-        <div className="flip_book">
-          <div className="accordion" id="fly">
-            <div className="accordion_mini">
-              <h1>200$ - 500$</h1>
-            </div>
-
-            {
-              expensiveCityes.map((i)=>
-                <div key={i.id} className="accordion_mini2">
-                  <div className="flip_book_element">
-                    <div className="flip_book_img">
-                      <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
-                    </div>
-                    <div className="flip_book_design">
-                      <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>{i.name}</Link>
-                      {/* <a href="shanghai.html">Shanghai</a> */}
-                    </div>
-                  </div>
-              </div>
-              )
-            }
-          </div>
-        </div>
-      </div>
-      <footer>
-        <div className="footer_container">
-          <img src={keshaLogo} alt="" />
-          <p>
-            Üstünlik zähmetiň, bilimiň we çydamlylygyñ netijesidigine ynanýarys.
-            Berlen mysallar adaty bolmak üçin niýetlenen däldir we netijeler hiç
-            haçan kepillendirilmeýär. Berilýän maglumatlar diňe bilim maksatly
-            bolup, kanuny ýa-da maliýe maslahatyny düzmeýär. Bu web sahypasyny
-            ýa-da oňa bagly islendik materialy ulanmak bilen, öz netijeleriňiz
-            üçin doly jogapkärçiligi öz üstüňize alýarsyňyz.
-          </p>
-          <p>
-            Biziň komandamyz sizi goldamak maksady bilen bu ýerde, ýöne siz
-            inwestisiýa we risk etmezden öñ seresaplylygy berjaý etmelisiñiz.
-            Üstünlik - bu siziñ borjuñyz we jogapkärçiligiñizdir. Ähli hukuklar
-            goragly.
-          </p>
-        </div>
-      </footer>
     </div>
+
+    <div className={`${styles["create_hello"]}`}>
+      <div className={`${styles["create_left_hello"]}`}>
+        <div className={`${styles["create_header"]}`}>
+          <h2>
+            Ý<span>önekey hususy kärhana</span>
+          </h2>
+        </div>
+        <div className={`${styles["create_header1"]}`}>
+          <p>Biz bilen Hytaýa okuwa geliň</p>
+        </div>
+        <div className={`${styles["create_button"]}`}>
+          <div className={`${styles["create_button_left"]}`}>
+            <a href="#start">BAŞLA</a>
+          </div>
+          <div className={`${styles["create_button_left"]}`}>
+            <div className={`${styles["imgblock"]}`}>
+              <img src={verified} />
+            </div>
+            <span>VARIFIED</span>
+          </div>
+        </div>
+      </div>
+      {/* <div class={`${styles["create_right_img"]}`}>
+          <a href="#">Kitap aljak</a>
+          <a href="#">Lomaý söwda</a>
+          <a href="#">Web-saýt açdyrjak</a>
+          <a href="#">Haryt sargajak</a>
+      </div> */}
+    </div>
+
+    <div className={`${styles["city_h1"]}`}>
+      <h1>Okuw jaýlary</h1>
+    </div>
+    <div className={`${styles["card_block"]}`}>
+      {allCityes.map((i) => (
+        <div className={`${styles["card"]}`}>
+          <Link to={`${EDUCATION_DIRECTION_ROUTE}/${i.id}`}>
+            <img src={`${process.env.REACT_APP_API_URL}api/static/${i.img}`} alt="china" />
+            <div className={`${styles["container"]}`}>
+              <h4>
+                <b>{i.name}</b>
+              </h4>
+              <p>{i.price} $</p>
+            </div>
+          </Link>
+        </div>
+      ))}
+    </div>
+  </div>
   );
 };
 
