@@ -35,6 +35,7 @@ const EducationPage = () => {
   }
   return (
     <div className={`${styles["body"]}`}>
+            <div className={`${styles["big-image"]}`}>
       <div className={`${styles["market_logo"]}`}>
         <div className={`${styles["market_slog"]}`}>
           <Link to={MAIN_PAGE}>
@@ -42,7 +43,6 @@ const EducationPage = () => {
           </Link>
         </div>
       </div>
-
       <div className={`${styles["create_hello"]}`}>
         <div className={`${styles["create_left_hello"]}`}>
           <div className={`${styles["create_header"]}`}>
@@ -72,6 +72,7 @@ const EducationPage = () => {
             <a href="#">Haryt sargajak</a>
         </div> */}
       </div>
+        </div>
 
       <div className={`${styles["city_h1"]}`}>
         <h1>Şäherler</h1>

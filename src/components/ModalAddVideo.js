@@ -6,7 +6,7 @@ import { createVideo } from "../http/courseApi";
 function ModalAddVideo({ show, onHide }) {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-  // const [description, setDescription] = useState('')
+  const [files, setFiles] = useState([]);
   const [loaderPercent, setLoaderPercent] = useState(0);
   const [loaderClass, setLoaderClass] = useState("progress d-none");
   const [loaderClassPercent, setLoaderClassPercent] = useState("ms-2 d-none");
@@ -14,10 +14,22 @@ function ModalAddVideo({ show, onHide }) {
   const [video, setVideo] = useState(null);
   const params = useParams();
 
+  const addFile = () => {
+    setFiles([...files, { file: "", number: files.length + 1 }]);
+  };
+
+  const removeFile = (number) => {
+    setFiles(files.filter((i) => i.number !== number));
+  };
+
+  const selectFileOne = (file, number) => {
+    setFiles(files.map((i) => (i.number === number ? { ...i, file: file } : i)));
+  };
+
   const selectFileImg = (e) => {
     setImg(e.target.files[0]);
   };
-
+console.log(files);
   const selectFileVideo = (e) => {
     setVideo(e.target.files[0]);
   };
@@ -33,7 +45,11 @@ function ModalAddVideo({ show, onHide }) {
     formData.append("name", name);
     formData.append("courseId", params.id);
     formData.append("number", number);
-    // formData.append('description', description)
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
+      formData.append("file[" + i + "]", file.file);
+    }
+    formData.append("countFiles", files.length);
     formData.append("img", img);
     formData.append("video", video);
     const options = {
@@ -77,20 +93,48 @@ function ModalAddVideo({ show, onHide }) {
           {/* <textarea onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Beyan..." name="name"/> */}
           <div className="inputs p-2">
             <Form>
-
-            <span className="c-bold">Surat Saýla</span>
+              <span className="c-bold">Surat Saýla</span>
               <Form.Control
                 className="my-2"
                 type="file"
                 onChange={selectFileImg}
               />
-            <span className="c-bold">Video Saýla</span>
+              <span className="c-bold">Video Saýla</span>
               <Form.Control
                 className="my-2"
                 type="file"
                 onChange={selectFileVideo}
               />
             </Form>
+          </div>
+            <hr />
+          <div>
+            <span className="my-3 c-bold d-block">Goşmaça file goşmak</span>
+            <span className="my-3 c-bold d-block">ÜNS BERIŇ! Faýlyň adynda soňundaky nokatdan başga nokat bolmaly däldir!</span>
+            <Button variant={"outline-dark"} onClick={addFile}>
+              File goş
+            </Button>
+            {files.map((item) => (
+              <div key={item.number} className="row mt-3">
+                <div className="col-8">
+                  <Form.Control
+                    className=""
+                    type="file"
+                    onChange={(e) =>
+                      selectFileOne(e.target.files[0], item.number)
+                    }
+                  />
+                </div>
+                <div className="col-4">
+                  <Button
+                    onClick={() => removeFile(item.number)}
+                    variant={"danger"}
+                  >
+                    Poz
+                  </Button>
+                </div>
+              </div>
+            ))}
           </div>
           <div className="my-2">
             <span className={loaderClassPercent}>{loaderPercent}%</span>
@@ -105,11 +149,11 @@ function ModalAddVideo({ show, onHide }) {
               ></div>
             </div>
           </div>
-          <button className="btn btn-danger" onClick={addCourse}>
-            gosh
-          </button>
         </Modal.Body>
         <Modal.Footer>
+        <button className="d-block btn btn-success" onClick={addCourse}>
+              Goş
+            </button>
           <Button variant="secondary" onClick={onHide}>
             Ýap
           </Button>

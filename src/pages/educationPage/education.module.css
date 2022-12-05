@@ -31,10 +31,16 @@ li {
     width:100%;
     height:100%;
 }
+.big-image{
+  background-image: url('./654987.jpg');
+  background-position: center center;
+  background-size: cover;
+}
 .create_hello {
     float:left;
     width:100%;
     font-family: 'Roboto', sans-serif;
+
 }
 .create_left_hello {
     float:left;
