@@ -47,13 +47,13 @@ const Stream = () => {
             type='video/mp4'
           >
           </video>
-          <div className='d-flex mt-4 justify-content-between w-100'>
-            <div className='d-flex align-items-center justify-content-start col-6'>
+          <div className='d-flex mt-4 justify-content-center justify-content-md-between w-100 flex-wrap'>
+            <div className='d-flex align-items-center justify-content-start mb-3'>
               <button disabled={quality === 360} onClick={() => setQuality(360)} className='btn btn-success'>360p</button>
               <button disabled={quality === 480} onClick={() => setQuality(480)} className='btn btn-warning mx-2'>480p</button>
               <button disabled={quality === 720} onClick={() => setQuality(720)} className='btn btn-primary'>720p</button>
             </div>
-            {(files?.length > 0) && (<div className='col-6 text-center'><h3>Goşmaça faýllar</h3>
+            {(files?.length > 0) && (<div className='col-sm-6 text-center'><h3>Goşmaça faýllar</h3>
               {
                 files.map((i, index) =>
                   <div  className="file-block d-flex"><span className='me-2'>{index + 1}.</span><a href={`${process.env.REACT_APP_API_URL}api/user/download?id=${i.id}`} download>{i.name}</a></div>
