@@ -36,14 +36,13 @@ const AdminCourseWideo = observer(() => {
       setCurrentVideo(video)
       setModalEditCourseVisible(true)
     }
-
   const tableAttributes = [
     "id",
     "Ady",
     "tertibi",
     "Döredilen wagty",
     "Düwmeler",
-  ];
+  ]; 
   return (
     <div>
       <Navbar />
@@ -88,7 +87,7 @@ const AdminCourseWideo = observer(() => {
                   </tr>
                 </thead>
                 <tbody>
-                  {wideos.map((i) => (
+                  {wideos.sort((a,b) => {return a.id - b.id}).map((i) => (
                     <tr key={i.id}>
                       <td className="table-node p-1">{i.id}</td>
                       <td className="table-node p-1 w-25">{i.name}</td>

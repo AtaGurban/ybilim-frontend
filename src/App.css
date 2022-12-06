@@ -846,3 +846,8 @@ footer p {
 .rh5v-PlayPause_icon {
   padding: 0px !important;
 }
+
+.file-block{
+  max-height: 25px;
+  overflow: hidden;
+}

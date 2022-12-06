@@ -25,6 +25,15 @@ export const getMyCourse = async (id)=>{
     const {data} = await $authhost.get(`api/user/my-courses?userId=${id}`)
     return data
 }
+export const getFilesByVideoId = async (id)=>{
+    const {data} = await $authhost.get(`api/admin/file?id=${id}`)
+    return data
+}
+
+export const deleteFileById = async (id)=>{
+    const {data} = await $authhost.delete(`api/admin/file?id=${id}`)
+    return data
+}
 export const getAllVideosByCourseId = async (id)=>{
     const {data} = await $host.get(`api/admin/getvideo?id=${id}`)
     return data

@@ -15,7 +15,7 @@ function ModalAddVideo({ show, onHide }) {
   const params = useParams();
 
   const addFile = () => {
-    setFiles([...files, { file: "", number: files.length + 1 }]);
+    setFiles([...files, { file: "", number: files.length + 1, name: ''}]);
   };
 
   const removeFile = (number) => {
@@ -26,10 +26,13 @@ function ModalAddVideo({ show, onHide }) {
     setFiles(files.map((i) => (i.number === number ? { ...i, file: file } : i)));
   };
 
+  const setNameFile = (name, number)=>{
+    setFiles(files.map((i) => (i.number === number ? { ...i, name: name } : i)));
+  }
+
   const selectFileImg = (e) => {
     setImg(e.target.files[0]);
   };
-console.log(files);
   const selectFileVideo = (e) => {
     setVideo(e.target.files[0]);
   };
@@ -46,8 +49,14 @@ console.log(files);
     formData.append("courseId", params.id);
     formData.append("number", number);
     for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      formData.append("file[" + i + "]", file.file);
+      if (files[i].file !== ''){
+        console.log('ds');
+        let file = files[i];
+        formData.append("file[" + i + "]", file.file);
+      } else {
+        alert('Doldurylmadyk faýl bar')
+        return false
+      }
     }
     formData.append("countFiles", files.length);
     formData.append("img", img);
@@ -117,6 +126,13 @@ console.log(files);
             {files.map((item) => (
               <div key={item.number} className="row mt-3">
                 <div className="col-8">
+                  {/* <Form.Control
+                    className=""
+                    type="text"
+                    onChange={(e) =>
+                      setNameFile(e.target.value, item.number)
+                    }
+                  /> */}
                   <Form.Control
                     className=""
                     type="file"

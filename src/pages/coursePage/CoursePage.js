@@ -41,7 +41,7 @@ const CoursePage = () => {
                         {
                             course.video.map((i)=>
                                 <div key={i.id} className={`${styles['video']}`}>
-                                    <img src={`${process.env.REACT_APP_API_URL}/api/static/${i.img}`}/>
+                                    <img src={`${process.env.REACT_APP_API_URL}api/static/${i.img}`}/>
                                     <h4><Link to={`/stream/${i.id}`}>{i.name}</Link></h4>
                                 </div>
                             )
