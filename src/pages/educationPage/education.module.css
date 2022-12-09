@@ -9,6 +9,7 @@ html {
     padding:0;
     background-color: #232529;
     font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
 }
 .body b {
     color:white
@@ -17,11 +18,10 @@ li {
     list-style-type: none;
 }
 .market_logo {
-    float:left;
     width: 100%;
     display:flex;
     padding:20px 60px;
-    justify-content: space-between;
+    justify-content: center;
 }
 .market_slog {
     float:left;
@@ -35,6 +35,14 @@ li {
   background-image: url('./654987.jpg');
   background-position: center center;
   background-size: cover;
+}
+/* 
+.circle-img{
+  height: 150px;
+  width: 150px;
+} */
+.circle-img img{
+  height: 100%;
 }
 .create_hello {
     float:left;
@@ -61,6 +69,10 @@ li {
 .create_header1 {
     float:left;
     width:100%;
+}
+
+.card{
+  max-width: 280px;
 }
 .create_button {
     float:left;
@@ -191,19 +203,23 @@ li {
     width:100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: space-between;
     padding:90px; 
 }
 .card {
     margin: 30px;
     transition: 0.3s;
-    width: 20.3333%;
+    /* width: 20.3333%; */
     overflow:hidden;
+  }
+  .circle-img{
+    height:280px;
+    width: 280px;
   }
   .card img {
     transition: 0.3s;
     object-fit: cover;
-    height:280px;
+    /* height:280px; */
     width:100%;
     border-radius: 50%;
   }
@@ -298,7 +314,7 @@ li {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        justify-content: left;
+        justify-content: space-between;
         padding:0;
     }
   }
@@ -315,13 +331,17 @@ li {
     .card {
         margin: 30px;
         transition: 0.3s;
-        width: 18.3333%;
+        /* width: 18.3333%; */
         overflow: hidden;
+    }
+    .circle-img{
+      height:232px;
+      width: 232px;
     }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 232px;
+        /* height: 232px; */
         width: 100%;
         border-radius: 50%;
     }
@@ -330,7 +350,7 @@ li {
     .card {
         margin: 30px;
         transition: 0.3s;
-        width: 27%;
+        /* width: 27%; */
         overflow: hidden;
     }
   }
@@ -352,13 +372,17 @@ li {
     .card {
         margin: 30px;
         transition: 0.3s;
-        width: 25%;
+        /* width: 25%; */
         overflow: hidden;
+    }
+    .circle-img{
+      height:232px;
+      width: 232px;
     }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 232px;
+        /* height: 232px; */
         width: 100%;
         border-radius: 50%;
     }
@@ -452,13 +476,17 @@ li {
     .card {
         margin: 35px;
         transition: 0.3s;
-        width: 40%;
+        /* width: 40%; */
         overflow: hidden;
+    }
+    .circle-img{
+      height:280px;
+      width: 280px;
     }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 280px;
+        /* height: 280px; */
         width: 100%;
         border-radius: 50%;
     }
@@ -470,7 +498,7 @@ li {
     .card {
         margin: 20px 32px;
         transition: 0.3s;
-        width: 40%;
+        /* width: 40%; */
         overflow: hidden;
     }
   }
@@ -564,7 +592,7 @@ li {
     .card {
         margin: 20px 29px;
         transition: 0.3s;
-        width: 22%;
+        /* width: 22%; */
         overflow: hidden;
     }
     .create_right_img {
@@ -614,13 +642,17 @@ li {
     .card {
         margin: 20px 32px;
         transition: 0.3s;
-        width: 36%;
+        /* width: 36%; */
         overflow: hidden;
+    }
+    .circle-img{
+      height:180px;
+      width: 180px;
     }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 180px;
+        /* height: 180px; */
         width: 100%;
         border-radius: 50%;
     }
@@ -629,13 +661,17 @@ li {
     .card {
         margin: 20px 32px;
         transition: 0.3s;
-        width: 21%;
+        /* width: 21%; */
         overflow: hidden;
+    }
+    .circle-img{
+      height:130px;
+      width: 130px;
     }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 130px;
+        /* height: 130px; */
         width: 100%;
         border-radius: 50%;
     }
@@ -704,10 +740,14 @@ li {
         width:100%;
             margin: 0;
             margin: 9px;
-            width: 45%;
+            /* width: 45%; */
+    }
+    .circle-img{
+      height:175px;
+      width: 175px;
     }
     .card img {
-        height:175px;
+        /* height:175px; */
     }
     .city_h1 h1 {
         float: left;
@@ -749,15 +789,18 @@ li {
     .create_right_img a {
         width:44%;
     }
+    .circle-img{
+      height:109px;
+      width: 109px;
+    }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 109px;
+        /* height: 109px; */
         width: 100%;
         border-radius: 50%;
     }
     .market_logo {
-        float: left;
         width: 100%;
         display: flex;
         padding: 20px 60px;
@@ -789,7 +832,7 @@ li {
         width: 100%;
         margin: 0;
         margin: 9px;
-        width: 28%;
+        /* width: 28%; */
     }
     .imgblock {
         width:45px;
@@ -821,22 +864,30 @@ li {
         width: 100%;
         margin: 0;
         margin: 9px;
-        width: 27%;
+        /* width: 27%; */
+    }
+    .circle-img{
+      height:91px;
+      width: 91px;
     }
     .card img {
         transition: 0.3s;
         object-fit: cover;
-        height: 91px;
+        /* height: 91px; */
         width: 100%;
         border-radius: 50%;
     }
   }
   @media screen and (max-width:280px) {
     .card {
-        width:42%;
+        /* width:42%; */
+    }
+    .circle-img{
+      height:104px;
+      width: 104px;
     }
     .card img {
-        height:104px;
+        /* height:104px; */
     }
     .create_left_hello h2 {
         float: left;

@@ -8,7 +8,7 @@ import { MoonLoader } from 'react-spinners'
 
 const Stream = () => {
   const params = useParams();
-  const [quality, setQuality] = useState(480)
+  const [quality, setQuality] = useState(720)
   const [course, setCourse] = useState({})
   const [files, setFiles] = useState([])
   const [nextVideoId, setNextVideoId] = useState(null)

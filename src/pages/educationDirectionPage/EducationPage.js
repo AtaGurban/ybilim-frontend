@@ -35,39 +35,8 @@ const EducationDirectionPage = () => {
         </Link>
       </div>
     </div>
-
-    <div className={`${styles["create_hello"]}`}>
-      <div className={`${styles["create_left_hello"]}`}>
-        <div className={`${styles["create_header"]}`}>
-          <h2>
-            Ý<span>önekey hususy kärhana</span>
-          </h2>
-        </div>
-        <div className={`${styles["create_header1"]}`}>
-          <p>Biz bilen Hytaýa okuwa geliň</p>
-        </div>
-        <div className={`${styles["create_button"]}`}>
-          <div className={`${styles["create_button_left"]}`}>
-            <a href="#start">BAŞLA</a>
-          </div>
-          <div className={`${styles["create_button_left"]}`}>
-            <div className={`${styles["imgblock"]}`}>
-              <img src={verified} />
-            </div>
-            <span>VARIFIED</span>
-          </div>
-        </div>
-      </div>
-      {/* <div class={`${styles["create_right_img"]}`}>
-          <a href="#">Kitap aljak</a>
-          <a href="#">Lomaý söwda</a>
-          <a href="#">Web-saýt açdyrjak</a>
-          <a href="#">Haryt sargajak</a>
-      </div> */}
-    </div>
-
     <div className={`${styles["city_h1"]}`}>
-      <h1>Okuw jaýlary</h1>
+      <h1>Okuw ugurlary</h1>
     </div>
     <div className={`${styles["card_block"]}`}>
       {allCityes.map((i) => (
@@ -77,7 +46,7 @@ const EducationDirectionPage = () => {
               <h4>
                 <b>{i.name}</b>
               </h4>
-              <p>{i.price} $</p>
+              <button className="btn w-100 btn-warning"><span className="fs-4 fw-bold">{i.price} $</span></button>
             </div>
         </div>
       ))}
